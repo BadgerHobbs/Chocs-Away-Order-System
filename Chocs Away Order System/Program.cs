@@ -16,7 +16,7 @@ namespace Chocs_Away_Order_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Customers_Form());
         }
     }
 }
