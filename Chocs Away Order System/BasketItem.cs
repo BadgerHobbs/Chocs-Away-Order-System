@@ -7,6 +7,7 @@ namespace Chocs_Away_Order_System
 {
     public class BasketItem
     {
+        // Initialise variables to store basket item data
         private int productNumber;
         private string productName;
         private double latestPrice;
@@ -16,11 +17,13 @@ namespace Chocs_Away_Order_System
 
         public BasketItem(int productNumber, string productName, double latestPrice, int quantity, string description)
         {
+            // Set parameter values to item data variables
             this.productNumber = productNumber;
             this.productName = productName;
             this.latestPrice = latestPrice;
             this.quantity = quantity;
             this.description = description;
+            // Calculare value of basket item by quanity times price
             this.totalValueOfBasketItem = latestPrice * quantity;
         }
 
@@ -96,9 +99,12 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Function to increase quantity of item
         public void IncreaseQuantity(int increase)
         {
+            // Increase quantity by increase number
             this.Quantity += increase;
+            // Recalculate basket value by price times quantity
             TotalValueOfBasket = LatestPrice * Quantity;
         }
     }

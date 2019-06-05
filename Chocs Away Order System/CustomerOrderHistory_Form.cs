@@ -16,6 +16,7 @@ namespace Chocs_Away_Order_System
         public CustomerOrderHistory_Form()
         {
             InitializeComponent();
+            // Update the orders table with the orders from the database from this customer
             UpdateOrdersTable(GetOrders());
         }
 
@@ -32,7 +33,7 @@ namespace Chocs_Away_Order_System
             connection.Open();
             // create data adapter
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-
+            // Add customer number value to SQL seach query command
             command.Parameters.AddWithValue("@customerNumber", Customers_Form.chosenCustomerNumber);
             // this will query your database and return the result to your datatable
             dataAdapter.Fill(OrderDataTable);
@@ -57,7 +58,7 @@ namespace Chocs_Away_Order_System
             connection.Open();
             // create data adapter
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-
+            // Add order number value to SQL seach query command
             command.Parameters.AddWithValue("@orderNumber", orderNumber);
             // this will query your database and return the result to your datatable
             dataAdapter.Fill(OrderItemsDataTable);
@@ -73,6 +74,7 @@ namespace Chocs_Away_Order_System
         // Add Customers Database Values to Orders Table (DataGridView)
         private void UpdateOrdersTable(DataTable dataTable)
         {
+            // Iterate through each row in the data table
             foreach (DataRow row in dataTable.Rows)
             {
                 // Get specific details from data table
@@ -87,11 +89,12 @@ namespace Chocs_Away_Order_System
             }
         }
 
-        // Add Customers Database Values to Customer Table (DataGridView)
+        // Add Customers Database Values of orders to Customer Table (DataGridView)
         private void UpdateOrderItemsTable(DataTable dataTable)
         {
+            // Clear the order items data grid view table of rows
             OrderItems_DataGridView.Rows.Clear();
-
+            // Iterate through each row in the data table
             foreach (DataRow row in dataTable.Rows)
             {
                 // Get specific details from data table
@@ -104,19 +107,23 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Function to refresh order items
         private void RefreshOrderItems()
         {
+            // Get currently selected row index in customer orders table
             int selectedrowindex = CutomerOrders_DataGridView.SelectedCells[0].RowIndex;
-
+            // Get currently selected row in customer orders table
             DataGridViewRow selectedRow = CutomerOrders_DataGridView.Rows[selectedrowindex];
-
+            // Get the chosen order number from that row
             int chosenOrderNumber = Convert.ToInt32(selectedRow.Cells["OrderNumber"].Value);
-
+            // Update order items table with the items from that order
             UpdateOrderItemsTable(GetOrderItems(chosenOrderNumber));
         }
 
+        // Function to run when a cell has been clicked
         private void CutomerOrders_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Refresh order items table
             RefreshOrderItems();
         }
         
