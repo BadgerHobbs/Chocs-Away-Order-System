@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Chocs_Away_Order_System
 {
-    class OrderBasket
+    public class OrderBasket
     {
         private List<BasketItem> basketItems = new List<BasketItem>();
         private double basketTotal;

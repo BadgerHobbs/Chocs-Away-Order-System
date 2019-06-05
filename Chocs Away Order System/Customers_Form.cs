@@ -13,6 +13,9 @@ namespace Chocs_Away_Order_System
 {
     public partial class Customers_Form : Form
     {
+        public static string chosenCustomerNumber;
+        public static string chosenCustomerName;
+
         public Customers_Form()
         {
             InitializeComponent();
@@ -48,19 +51,28 @@ namespace Chocs_Away_Order_System
             foreach (DataRow row in dataTable.Rows)
             {
                 // Get specific details from data table
-                string customerName = row["CustomerName"].ToString();         // Get customer name
+                string customerNumber = row["CustomerNumber"].ToString();
+                string customerName = row["CustomerName"].ToString();           // Get customer name
                 string customerPostcode = row["Postcode"].ToString();           // Get customer postcode
                 string houseNumber = row["AddressLine1"].ToString().Split()[0]; // Get customer adress and trim to only house number
 
                 // Add Data to table
-                customers_DataGridView.Rows.Add(customerName, customerPostcode, houseNumber); 
+                customers_DataGridView.Rows.Add(customerNumber, customerName, customerPostcode, houseNumber); 
             }
         }
 
         private void customers_DataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            int selectedrowindex = customers_DataGridView.SelectedCells[0].RowIndex;
+
+            DataGridViewRow selectedRow = customers_DataGridView.Rows[selectedrowindex];
+
+            chosenCustomerNumber = Convert.ToString(selectedRow.Cells["CustomerNumber"].Value);
+            chosenCustomerName = Convert.ToString(selectedRow.Cells["customerName"].Value);
+
             OrderBasket_Form orderBasketForm = new OrderBasket_Form();
             orderBasketForm.FormClosed += new FormClosedEventHandler(OrderBasketClosed);
+            orderBasketForm.Text = chosenCustomerName;
             orderBasketForm.Show();
             this.Hide();
         }

@@ -13,7 +13,7 @@ namespace Chocs_Away_Order_System
 {
     public partial class OrderBasket_Form : Form
     {
-        OrderBasket orderBasket = new OrderBasket();
+        public static OrderBasket orderBasket = new OrderBasket();
 
         public OrderBasket_Form()
         {
@@ -105,7 +105,8 @@ namespace Chocs_Away_Order_System
 
         private void Checkout_Button_Click(object sender, EventArgs e)
         {
-
+            CheckoutOrder.AddOrder();
+            CheckoutOrder.AddOrderItems();
         }
 
         private void RemoveItem_Button_Click(object sender, EventArgs e)
@@ -173,6 +174,12 @@ namespace Chocs_Away_Order_System
         private void ProductsNumber_Label_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public OrderBasket OrderBasket
+        {
+            get;
+            set;
         }
     }
 }

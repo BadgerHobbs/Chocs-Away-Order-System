@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.customers_DataGridView = new System.Windows.Forms.DataGridView();
+            this.CustomerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerPostcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerHouseNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +47,7 @@
             this.customers_DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.customers_DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.customers_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerNumber,
             this.customerName,
             this.customerPostcode,
             this.customerHouseNumber});
@@ -60,6 +62,13 @@
             this.customers_DataGridView.Size = new System.Drawing.Size(438, 358);
             this.customers_DataGridView.TabIndex = 0;
             this.customers_DataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customers_DataGridView_CellMouseDoubleClick);
+            // 
+            // CustomerNumber
+            // 
+            this.CustomerNumber.FillWeight = 50F;
+            this.CustomerNumber.HeaderText = "Customer No";
+            this.CustomerNumber.Name = "CustomerNumber";
+            this.CustomerNumber.ReadOnly = true;
             // 
             // customerName
             // 
@@ -98,6 +107,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView customers_DataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerPostcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerHouseNumber;

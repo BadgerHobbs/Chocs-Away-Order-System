@@ -47,6 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasketItem.cs" />
+    <Compile Include="CheckoutOrder.cs" />
+    <Compile Include="CustomerOrderHistory_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerOrderHistory_Form.Designer.cs">
+      <DependentUpon>CustomerOrderHistory_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customers_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +69,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomerOrderHistory_Form.resx">
+      <DependentUpon>CustomerOrderHistory_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customers_Form.resx">
       <DependentUpon>Customers_Form.cs</DependentUpon>
     </EmbeddedResource>

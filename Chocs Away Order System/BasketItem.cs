@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Chocs_Away_Order_System
 {
-    class BasketItem
+    public class BasketItem
     {
         private int productNumber;
         private string productName;
