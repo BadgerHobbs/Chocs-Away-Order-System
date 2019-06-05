@@ -101,12 +101,39 @@ namespace Chocs_Away_Order_System
             {
                 Basket_DataGridView.Rows.Add(basketItem.ProductNumber, basketItem.ProductName, basketItem.Quantity, "£" + basketItem.LatestPrice.ToString(), "£" + (basketItem.LatestPrice * basketItem.Quantity).ToString(), basketItem.Description);
             }
+
+            // Show/Hide buttons if items are in basket
+
+            if (orderBasket.BasketItems.Count > 0)
+            {
+                RemoveItem_Button.Enabled = true;
+                ClearBasket_Button.Enabled = true;
+                Checkout_Button.Enabled = true;
+            }
+            else
+            {
+                RemoveItem_Button.Enabled = false;
+                ClearBasket_Button.Enabled = false;
+                Checkout_Button.Enabled = false;
+            }
+            
         }
 
         private void Checkout_Button_Click(object sender, EventArgs e)
         {
             CheckoutOrder.AddOrder();
             CheckoutOrder.AddOrderItems();
+
+            CustomerOrderHistory_Form customerOrderHistoryForm = new CustomerOrderHistory_Form();
+            customerOrderHistoryForm.FormClosed += new FormClosedEventHandler(customerOrderHistoryFormClosed);
+            customerOrderHistoryForm.Text = "customerOrderHistoryForm";
+            customerOrderHistoryForm.Show();
+            this.Hide();
+        }
+
+        private void customerOrderHistoryFormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close(); // Close this form
         }
 
         private void RemoveItem_Button_Click(object sender, EventArgs e)
@@ -134,12 +161,12 @@ namespace Chocs_Away_Order_System
 
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void Add_Button_Click(object sender, EventArgs e)
