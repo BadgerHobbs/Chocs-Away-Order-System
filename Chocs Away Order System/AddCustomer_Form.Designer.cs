@@ -53,7 +53,7 @@
             // 
             // FirstName_TextBox
             // 
-            this.FirstName_TextBox.Location = new System.Drawing.Point(15, 25);
+            this.FirstName_TextBox.Location = new System.Drawing.Point(15, 30);
             this.FirstName_TextBox.Name = "FirstName_TextBox";
             this.FirstName_TextBox.Size = new System.Drawing.Size(180, 20);
             this.FirstName_TextBox.TabIndex = 0;
@@ -68,7 +68,7 @@
             // FirstName_Label
             // 
             this.FirstName_Label.AutoSize = true;
-            this.FirstName_Label.Location = new System.Drawing.Point(12, 9);
+            this.FirstName_Label.Location = new System.Drawing.Point(12, 14);
             this.FirstName_Label.Name = "FirstName_Label";
             this.FirstName_Label.Size = new System.Drawing.Size(57, 13);
             this.FirstName_Label.TabIndex = 9;
@@ -136,9 +136,9 @@
             this.PhoneNumber_Label.AutoSize = true;
             this.PhoneNumber_Label.Location = new System.Drawing.Point(12, 238);
             this.PhoneNumber_Label.Name = "PhoneNumber_Label";
-            this.PhoneNumber_Label.Size = new System.Drawing.Size(78, 13);
+            this.PhoneNumber_Label.Size = new System.Drawing.Size(112, 13);
             this.PhoneNumber_Label.TabIndex = 18;
-            this.PhoneNumber_Label.Text = "Phone Number";
+            this.PhoneNumber_Label.Text = "Mobile Phone Number";
             // 
             // PhoneNumber_TextBox
             // 
@@ -194,7 +194,7 @@
             // 
             // LastName_TextBox
             // 
-            this.LastName_TextBox.Location = new System.Drawing.Point(201, 25);
+            this.LastName_TextBox.Location = new System.Drawing.Point(201, 30);
             this.LastName_TextBox.Name = "LastName_TextBox";
             this.LastName_TextBox.Size = new System.Drawing.Size(174, 20);
             this.LastName_TextBox.TabIndex = 24;
@@ -202,7 +202,7 @@
             // LastName_Label
             // 
             this.LastName_Label.AutoSize = true;
-            this.LastName_Label.Location = new System.Drawing.Point(198, 9);
+            this.LastName_Label.Location = new System.Drawing.Point(198, 14);
             this.LastName_Label.Name = "LastName_Label";
             this.LastName_Label.Size = new System.Drawing.Size(58, 13);
             this.LastName_Label.TabIndex = 25;
