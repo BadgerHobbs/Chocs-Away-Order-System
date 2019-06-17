@@ -415,7 +415,7 @@
             this.Basket_DataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.Basket_DataGridView.RowHeadersVisible = false;
             this.Basket_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Basket_DataGridView.Size = new System.Drawing.Size(702, 370);
+            this.Basket_DataGridView.Size = new System.Drawing.Size(702, 356);
             this.Basket_DataGridView.TabIndex = 22;
             // 
             // id
