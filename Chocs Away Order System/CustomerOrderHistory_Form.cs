@@ -70,6 +70,60 @@ namespace Chocs_Away_Order_System
             return OrderItemsDataTable;
         }
 
+        // Get customer name from customer number
+        private string GetCustomerName(int customerNumber)
+        {
+            string customerName = "";
+
+            // Create data table object to hold products from database
+            DataTable OrderDataTable = new DataTable();
+            // Create SQL connection
+            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
+            // Create SQL command using connection information
+            SqlCommand command = new SqlCommand("select CustomerName from Customers where CustomerNumber=@customerNumber", connection);
+            // Open the SQL connection
+            connection.Open();
+            // create data adapter
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+            // Add customer number value to SQL seach query command
+            command.Parameters.AddWithValue("@customerNumber", customerNumber);
+            // this will query your database and return the result to your datatable
+            customerName = command.ExecuteScalar().ToString();
+            // Close the SQL connection
+            connection.Close();
+            // Close the data adapter
+            dataAdapter.Dispose();
+            // Return data table with new results
+            return customerName;
+        }
+
+        // Get Product name from Product number
+        private string GetProductName(int productNumber)
+        {
+            string productName = "";
+
+            // Create data table object to hold products from database
+            DataTable OrderDataTable = new DataTable();
+            // Create SQL connection
+            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
+            // Create SQL command using connection information
+            SqlCommand command = new SqlCommand("select ProductName from Products where ProductNumber=@productNumber", connection);
+            // Open the SQL connection
+            connection.Open();
+            // create data adapter
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+            // Add customer number value to SQL seach query command
+            command.Parameters.AddWithValue("@productNumber", productNumber);
+            // this will query your database and return the result to your datatable
+            productName = command.ExecuteScalar().ToString();
+            // Close the SQL connection
+            connection.Close();
+            // Close the data adapter
+            dataAdapter.Dispose();
+            // Return data table with new results
+            return productName;
+        }
+
 
         // Add Customers Database Values to Orders Table (DataGridView)
         private void UpdateOrdersTable(DataTable dataTable)
@@ -84,8 +138,11 @@ namespace Chocs_Away_Order_System
                 string orderTotal = "£" + Math.Round(Convert.ToDouble(row["OrderTotal"]),2).ToString();           // Get customer orderTotal
                 string orderStatus = row["OrderStatus"].ToString();         // Get customer orderStatus
 
+                // Get Customer Name
+                string customerName = GetCustomerName(Convert.ToInt32(customerNumber));
+
                 // Add Data to table
-                CutomerOrders_DataGridView.Rows.Add(orderNumber, orderDate, orderStatus, orderTotal);
+                CutomerOrders_DataGridView.Rows.Add(customerName, orderNumber, orderDate, orderStatus, orderTotal);
             }
         }
 
@@ -102,8 +159,11 @@ namespace Chocs_Away_Order_System
                 string productNumber = row["ProductNumber"].ToString();   // Get customer customerNumber
                 string quantity = row["Quantity"].ToString();             // Get customer orderDate
 
+                // Get product name
+                string productName = GetProductName(Convert.ToInt32(productNumber));
+
                 // Add Data to table
-                OrderItems_DataGridView.Rows.Add(orderNumber, productNumber, quantity);
+                OrderItems_DataGridView.Rows.Add(orderNumber, productNumber, productName, quantity);
             }
         }
 
@@ -126,6 +186,11 @@ namespace Chocs_Away_Order_System
             // Refresh order items table
             RefreshOrderItems();
         }
-        
+
+        private void CutomerOrders_DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            // Refresh order items table
+            RefreshOrderItems();
+        }
     }
 }

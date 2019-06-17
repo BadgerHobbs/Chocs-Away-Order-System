@@ -102,6 +102,7 @@
             // 
             // FirstName_TextBox
             // 
+            this.FirstName_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FirstName_TextBox.Location = new System.Drawing.Point(6, 36);
             this.FirstName_TextBox.Name = "FirstName_TextBox";
             this.FirstName_TextBox.Size = new System.Drawing.Size(106, 20);
