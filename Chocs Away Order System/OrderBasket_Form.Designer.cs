@@ -62,6 +62,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Basket_Label = new System.Windows.Forms.Label();
             this.OrderSummary_Panel.SuspendLayout();
             this.Item_Panel.SuspendLayout();
             this.Basket_Panel.SuspendLayout();
@@ -279,6 +280,7 @@
             this.Description_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Description_Label.Location = new System.Drawing.Point(353, 15);
             this.Description_Label.Name = "Description_Label";
+            this.Description_Label.ReadOnly = true;
             this.Description_Label.Size = new System.Drawing.Size(269, 19);
             this.Description_Label.TabIndex = 12;
             this.Description_Label.Text = "Description";
@@ -291,6 +293,7 @@
             this.Quantity_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Quantity_Label.Location = new System.Drawing.Point(641, 15);
             this.Quantity_Label.Name = "Quantity_Label";
+            this.Quantity_Label.ReadOnly = true;
             this.Quantity_Label.Size = new System.Drawing.Size(64, 19);
             this.Quantity_Label.TabIndex = 13;
             this.Quantity_Label.Text = "Quantity";
@@ -303,6 +306,7 @@
             this.Item_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Item_Label.Location = new System.Drawing.Point(23, 15);
             this.Item_Label.Name = "Item_Label";
+            this.Item_Label.ReadOnly = true;
             this.Item_Label.Size = new System.Drawing.Size(213, 19);
             this.Item_Label.TabIndex = 14;
             this.Item_Label.Text = "Item";
@@ -315,6 +319,7 @@
             this.Price_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Price_Label.Location = new System.Drawing.Point(253, 15);
             this.Price_Label.Name = "Price_Label";
+            this.Price_Label.ReadOnly = true;
             this.Price_Label.Size = new System.Drawing.Size(84, 19);
             this.Price_Label.TabIndex = 15;
             this.Price_Label.Text = "Price";
@@ -380,9 +385,9 @@
             // 
             this.Basket_Panel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Basket_Panel.Controls.Add(this.Basket_DataGridView);
-            this.Basket_Panel.Location = new System.Drawing.Point(12, 111);
+            this.Basket_Panel.Location = new System.Drawing.Point(12, 125);
             this.Basket_Panel.Name = "Basket_Panel";
-            this.Basket_Panel.Size = new System.Drawing.Size(708, 376);
+            this.Basket_Panel.Size = new System.Drawing.Size(708, 362);
             this.Basket_Panel.TabIndex = 21;
             // 
             // Basket_DataGridView
@@ -480,12 +485,23 @@
             0});
             this.Quantity_NumericUpDown.ValueChanged += new System.EventHandler(this.Quantity_NumericUpDown_ValueChanged);
             // 
+            // Basket_Label
+            // 
+            this.Basket_Label.AutoSize = true;
+            this.Basket_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Basket_Label.Location = new System.Drawing.Point(11, 102);
+            this.Basket_Label.Name = "Basket_Label";
+            this.Basket_Label.Size = new System.Drawing.Size(57, 20);
+            this.Basket_Label.TabIndex = 22;
+            this.Basket_Label.Text = "Basket";
+            // 
             // OrderBasket_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(921, 544);
+            this.Controls.Add(this.Basket_Label);
             this.Controls.Add(this.Basket_Panel);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Cancel_Button);
@@ -547,5 +563,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.NumericUpDown Quantity_NumericUpDown;
+        private System.Windows.Forms.Label Basket_Label;
     }
 }
