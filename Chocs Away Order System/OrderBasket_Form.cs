@@ -25,6 +25,10 @@ namespace Chocs_Away_Order_System
             UpdateItemsDropdown(items);
             // Update item table
             UpdateItemTable();
+            // Clear the order basket
+            orderBasket.ClearBasket();
+            // Update the item table (data grid view table)
+            UpdateItemTable();
         }
 
         // Get Products From Database
@@ -187,6 +191,10 @@ namespace Chocs_Away_Order_System
         // When the cancel button has been clicked, this function runs
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
+            // Clear the order basket
+            orderBasket.ClearBasket();
+            // Update the item table (data grid view table)
+            UpdateItemTable();
             // Close the order basket form
             this.Close();
         }
@@ -194,6 +202,10 @@ namespace Chocs_Away_Order_System
         // When the exit button has been clicked, this function runs
         private void Exit_Button_Click(object sender, EventArgs e)
         {
+            // Clear the order basket
+            orderBasket.ClearBasket();
+            // Update the item table (data grid view table)
+            UpdateItemTable();
             // Exit the application (entire program)
             Application.Exit();
         }
@@ -204,7 +216,7 @@ namespace Chocs_Away_Order_System
             // Get the details of the item selected in the drop down box
             DataRow item = GetItemDetails(GetItems(), Item_ComboBox.Text);
             // Add the item to the order basket
-            orderBasket.AddItem(Convert.ToInt32(item["ProductNumber"]), item["ProductName"].ToString(), Convert.ToDouble(item["UnitPrice"]), Convert.ToInt32(Quantity_DomainUpDown.Text), item["Description"].ToString());
+            orderBasket.AddItem(Convert.ToInt32(item["ProductNumber"]), item["ProductName"].ToString(), Convert.ToDouble(item["UnitPrice"]), Convert.ToInt32(Quantity_NumericUpDown.Text), item["Description"].ToString());
             // Update the item table (data grid view table)
             UpdateItemTable();
         }
@@ -246,6 +258,10 @@ namespace Chocs_Away_Order_System
         {
             get;
             set;
+        }
+
+        private void Quantity_NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

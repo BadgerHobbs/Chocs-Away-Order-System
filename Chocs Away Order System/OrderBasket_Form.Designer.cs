@@ -40,7 +40,6 @@
             this.Total_Label = new System.Windows.Forms.Label();
             this.Spacer1_Label = new System.Windows.Forms.Label();
             this.OrderSummary_Label = new System.Windows.Forms.Label();
-            this.Quantity_DomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.Item_ComboBox = new System.Windows.Forms.ComboBox();
             this.Description_TextBox = new System.Windows.Forms.TextBox();
             this.Item_Panel = new System.Windows.Forms.Panel();
@@ -62,10 +61,12 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.OrderSummary_Panel.SuspendLayout();
             this.Item_Panel.SuspendLayout();
             this.Basket_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Basket_DataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // OrderSummary_Panel
@@ -208,18 +209,6 @@
             this.OrderSummary_Label.TabIndex = 0;
             this.OrderSummary_Label.Text = "Order Summary";
             // 
-            // Quantity_DomainUpDown
-            // 
-            this.Quantity_DomainUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Quantity_DomainUpDown.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity_DomainUpDown.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.Quantity_DomainUpDown.Location = new System.Drawing.Point(629, 44);
-            this.Quantity_DomainUpDown.Name = "Quantity_DomainUpDown";
-            this.Quantity_DomainUpDown.Size = new System.Drawing.Size(64, 27);
-            this.Quantity_DomainUpDown.TabIndex = 1;
-            this.Quantity_DomainUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Quantity_DomainUpDown.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            // 
             // Item_ComboBox
             // 
             this.Item_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -247,10 +236,10 @@
             // Item_Panel
             // 
             this.Item_Panel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Item_Panel.Controls.Add(this.Quantity_NumericUpDown);
             this.Item_Panel.Controls.Add(this.Add_Button);
             this.Item_Panel.Controls.Add(this.Price_TextBox);
             this.Item_Panel.Controls.Add(this.Item_ComboBox);
-            this.Item_Panel.Controls.Add(this.Quantity_DomainUpDown);
             this.Item_Panel.Controls.Add(this.Description_TextBox);
             this.Item_Panel.Location = new System.Drawing.Point(12, 8);
             this.Item_Panel.Name = "Item_Panel";
@@ -471,6 +460,26 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // Quantity_NumericUpDown
+            // 
+            this.Quantity_NumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Quantity_NumericUpDown.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quantity_NumericUpDown.Location = new System.Drawing.Point(632, 41);
+            this.Quantity_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Quantity_NumericUpDown.Name = "Quantity_NumericUpDown";
+            this.Quantity_NumericUpDown.Size = new System.Drawing.Size(64, 27);
+            this.Quantity_NumericUpDown.TabIndex = 23;
+            this.Quantity_NumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Quantity_NumericUpDown.ValueChanged += new System.EventHandler(this.Quantity_NumericUpDown_ValueChanged);
+            // 
             // OrderBasket_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,6 +505,7 @@
             this.Item_Panel.PerformLayout();
             this.Basket_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Basket_DataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,7 +525,6 @@
         private System.Windows.Forms.Label ItemsNumber_Label;
         private System.Windows.Forms.Label Items_Label;
         private System.Windows.Forms.Label Spacer3_Label;
-        private System.Windows.Forms.DomainUpDown Quantity_DomainUpDown;
         private System.Windows.Forms.ComboBox Item_ComboBox;
         private System.Windows.Forms.TextBox Description_TextBox;
         private System.Windows.Forms.Panel Item_Panel;
@@ -537,5 +546,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.NumericUpDown Quantity_NumericUpDown;
     }
 }
