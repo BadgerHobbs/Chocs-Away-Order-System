@@ -49,6 +49,10 @@ namespace Chocs_Away_Order_System
         // Add Customers Database Values to Customer Table (DataGridView)
         private void UpdateCustomersTable(DataTable dataTable)
         {
+            // Clear the data grid view rows and refresh
+            customers_DataGridView.Rows.Clear();
+            customers_DataGridView.Refresh();
+
             // For each row in datatable of customer details
             foreach (DataRow row in dataTable.Rows)
             {
@@ -58,8 +62,96 @@ namespace Chocs_Away_Order_System
                 string customerPostcode = row["Postcode"].ToString();           // Get customer postcode
                 string houseNumber = row["AddressLine1"].ToString().Split()[0]; // Get customer adress and trim to only house number
 
-                // Add Data to table
-                customers_DataGridView.Rows.Add(customerNumber, customerName, customerPostcode, houseNumber); 
+                bool firstNameFilter = false;
+                bool lastNameFilter = false;
+                bool postcodeFilter = false;
+                bool houseNumberFilter = false;
+
+                if (FirstName_TextBox.Text != "")
+                {
+                    firstNameFilter = true;
+                }
+                if (LastName_TextBox.Text != "")
+                {
+                    lastNameFilter = true;
+                }
+                if (Postcode_TextBox.Text != "")
+                {
+                    postcodeFilter = true;
+                }
+                if (HouseNumber_TextBox.Text != "")
+                {
+                    houseNumberFilter = true;
+                }
+
+                bool fitsFilter = false;
+
+                // Check First Name
+                // If search box contains search text or is empty (no search query)
+                if (firstNameFilter == true)
+                {
+                    if (customerName.ToLower().Contains(FirstName_TextBox.Text.ToLower()))
+                    {
+                        fitsFilter = true;
+                    }
+                    else
+                    {
+                        fitsFilter = false;
+                    }
+                }
+
+                // Check Last Name
+                // If search box contains search text or is empty (no search query)
+                if (lastNameFilter == true)
+                {
+                    if (customerName.ToLower().Contains(LastName_TextBox.Text.ToLower()))
+                    {
+                        fitsFilter = true;
+                    }
+                    else
+                    {
+                        fitsFilter = false;
+                    }
+                }
+
+                // Check Postcode
+                if (postcodeFilter == true)
+                {
+                    if (customerPostcode.ToLower().Contains(Postcode_TextBox.Text.ToLower()))
+                    {
+                        fitsFilter = true;
+                    }
+                    else
+                    {
+                        fitsFilter = false;
+                    }
+                }
+
+                // Check House Number
+                if (houseNumberFilter == true)
+                {
+                    if (houseNumber.ToLower().Contains(HouseNumber_TextBox.Text.ToLower()))
+                    {
+                        fitsFilter = true;
+                    }
+                    else
+                    {
+                        fitsFilter = false;
+                    }
+                }
+
+                // If a filter is on and the result fits it, add to data grid view
+                if (((firstNameFilter == true) || (lastNameFilter == true) || (postcodeFilter == true) || (houseNumberFilter == true)) && (fitsFilter == true))
+                {
+                    // Add Data to table
+                    customers_DataGridView.Rows.Add(customerNumber, customerName, customerPostcode, houseNumber);
+                }
+                // Else if no filters are on, add to data grid view
+                else if ((firstNameFilter == false) && (lastNameFilter == false) && (postcodeFilter == false) && (houseNumberFilter == false))
+                {
+                    // Add Data to table
+                    customers_DataGridView.Rows.Add(customerNumber, customerName, customerPostcode, houseNumber);
+                }
             }
         }
 
@@ -91,6 +183,26 @@ namespace Chocs_Away_Order_System
         private void OrderBasketClosed(object sender, FormClosedEventArgs e)
         {
             this.Show(); // Show this form
+        }
+
+        private void Name_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateCustomersTable(GetCustomers());
+        }
+
+        private void Postcode_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateCustomersTable(GetCustomers());
+        }
+
+        private void HouseNumber_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateCustomersTable(GetCustomers());
+        }
+
+        private void LastName_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateCustomersTable(GetCustomers());
         }
     }
 }
