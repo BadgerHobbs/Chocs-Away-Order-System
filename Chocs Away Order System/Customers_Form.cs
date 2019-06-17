@@ -185,6 +185,13 @@ namespace Chocs_Away_Order_System
             this.Show(); // Show this form
         }
 
+        // Function to run when add customer form is closed
+        private void AddCustomerClosed(object sender, FormClosedEventArgs e)
+        {
+            UpdateCustomersTable(GetCustomers()); // Update customers table with values from database
+            this.Show(); // Show this form
+        }
+
         private void Name_TextBox_TextChanged(object sender, EventArgs e)
         {
             UpdateCustomersTable(GetCustomers());
@@ -203,6 +210,22 @@ namespace Chocs_Away_Order_System
         private void LastName_TextBox_TextChanged(object sender, EventArgs e)
         {
             UpdateCustomersTable(GetCustomers());
+        }
+
+        private void AddCustomer_Button_Click(object sender, EventArgs e)
+        {
+            // Get index of row selected in data grid view (table)
+            int selectedrowindex = customers_DataGridView.SelectedCells[0].RowIndex;
+            // Gets selected row in data grid view (table)
+            DataGridViewRow selectedRow = customers_DataGridView.Rows[selectedrowindex];
+            // Create new order basket form object
+            AddCustomer_Form addCustomerForm = new AddCustomer_Form();
+            // Create Form closed event handler for form (so when form closed runs orderbasketclosed function)
+            addCustomerForm.FormClosed += new FormClosedEventHandler(AddCustomerClosed);
+            // Show order basket form
+            addCustomerForm.Show();
+            // Hide this form (customers form)
+            this.Hide();
         }
     }
 }

@@ -42,6 +42,7 @@
             this.HouseNumber_Label = new System.Windows.Forms.Label();
             this.LastName_TextBox = new System.Windows.Forms.TextBox();
             this.LastName_Label = new System.Windows.Forms.Label();
+            this.AddCustomer_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customers_DataGridView)).BeginInit();
             this.Filters_GroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             this.customers_DataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.customers_DataGridView.RowHeadersVisible = false;
             this.customers_DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customers_DataGridView.Size = new System.Drawing.Size(438, 274);
+            this.customers_DataGridView.Size = new System.Drawing.Size(438, 230);
             this.customers_DataGridView.TabIndex = 0;
             this.customers_DataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customers_DataGridView_CellMouseDoubleClick);
             // 
@@ -186,11 +187,22 @@
             this.LastName_Label.TabIndex = 8;
             this.LastName_Label.Text = "Last Name";
             // 
+            // AddCustomer_Button
+            // 
+            this.AddCustomer_Button.Location = new System.Drawing.Point(12, 327);
+            this.AddCustomer_Button.Name = "AddCustomer_Button";
+            this.AddCustomer_Button.Size = new System.Drawing.Size(414, 23);
+            this.AddCustomer_Button.TabIndex = 6;
+            this.AddCustomer_Button.Text = "Add Customer";
+            this.AddCustomer_Button.UseVisualStyleBackColor = true;
+            this.AddCustomer_Button.Click += new System.EventHandler(this.AddCustomer_Button_Click);
+            // 
             // Customers_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(438, 358);
+            this.Controls.Add(this.AddCustomer_Button);
             this.Controls.Add(this.Filters_GroupBox);
             this.Controls.Add(this.customers_DataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -219,6 +231,7 @@
         private System.Windows.Forms.Label FirstName_Label;
         private System.Windows.Forms.Label LastName_Label;
         private System.Windows.Forms.TextBox LastName_TextBox;
+        private System.Windows.Forms.Button AddCustomer_Button;
     }
 }
 

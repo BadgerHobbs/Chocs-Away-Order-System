@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCustomer_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCustomer_Form.Designer.cs">
+      <DependentUpon>AddCustomer_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddCutomer.cs" />
     <Compile Include="BasketItem.cs" />
     <Compile Include="CheckoutOrder.cs" />
     <Compile Include="CustomerOrderHistory_Form.cs">
@@ -69,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddCustomer_Form.resx">
+      <DependentUpon>AddCustomer_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerOrderHistory_Form.resx">
       <DependentUpon>CustomerOrderHistory_Form.cs</DependentUpon>
     </EmbeddedResource>
