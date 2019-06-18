@@ -21,28 +21,13 @@ namespace Chocs_Away_Order_System
 
             orderBasket.UpdateTotals();
 
-            // Create SQL connection
-            using (SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true"))
+            // For each row in customers database of customer details
+            using (var db = new chocsawayEntities())
             {
-                // Open SQL connection
-                connection.Open();
-                // Create and use new SQL command
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    // Add SQL command query to insert into orders specific values
-                    command.CommandText = "INSERT INTO Orders(CustomerNumber, OrderDate, OrderTotal, OrderStatus) VALUES(@customerNumber, @orderDate, @orderTotal, @orderStatus); SELECT SCOPE_IDENTITY(); ";
-                    // Add data to values in SQL query string
-                    // Get customer number
-                    command.Parameters.AddWithValue("@customerNumber", Customers_Form.chosenCustomerNumber);
-                    // Get date of order
-                    command.Parameters.AddWithValue("@orderDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.sss"));
-                    // Get basket total
-                    command.Parameters.AddWithValue("@orderTotal", orderBasket.BasketTotal);
-                    // Set order status to 1
-                    command.Parameters.AddWithValue("@orderStatus", "1");
-                    //  Execute SQL query/command & Get order number from database and store as ordernumber
-                    orderNumber = Convert.ToInt32(command.ExecuteScalar());
-                }
+                Order newOrder = new Order() { CustomerNumber = Convert.ToInt32(Customers_Form.chosenCustomerNumber), OrderDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.sss")), OrderTotal = Convert.ToDecimal(orderBasket.BasketTotal), OrderStatus = 1 };
+                db.Orders.Add(newOrder);
+                db.SaveChanges();
+                orderNumber = newOrder.OrderNumber;
             }
         }
         
@@ -60,26 +45,11 @@ namespace Chocs_Away_Order_System
             // Iterate through each item in the basket
             foreach (BasketItem basketItem in orderBasket.BasketItems)
             {
-                // Create SQL command using connection information
-                using (SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true"))
+                // For each row in customers database of customer details
+                using (var db = new chocsawayEntities())
                 {
-                    // Open the SQL connection
-                    connection.Open();
-                    // Create and use new SQL command
-                    using (SqlCommand command = connection.CreateCommand())
-                    {
-                        // Add SQL command query to insert into orders specific values
-                        command.CommandText = "INSERT INTO OrderItems(OrderNumber, ProductNumber, Quantity) VALUES(@orderNumber, @productNumber, @quantity)";
-                        // Add data to values in SQL query string
-                        // Add order number
-                        command.Parameters.AddWithValue("@orderNumber", orderNumber);
-                        // Add product number
-                        command.Parameters.AddWithValue("@productNumber", basketItem.ProductNumber);
-                        // Add product quantity
-                        command.Parameters.AddWithValue("@quantity", basketItem.Quantity);
-                        // Execute SQL query/command
-                        command.ExecuteNonQuery();
-                    }
+                    db.OrderItems.Add(new OrderItem() { OrderNumber = orderNumber, ProductNumber = basketItem.ProductNumber, Quantity = basketItem.Quantity });
+                    db.SaveChanges();
                 }
             }
         }

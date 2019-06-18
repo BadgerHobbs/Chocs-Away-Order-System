@@ -19,10 +19,8 @@ namespace Chocs_Away_Order_System
         public OrderBasket_Form()
         {
             InitializeComponent();
-            // Set data table items to hold shop items when getItems function run
-            DataTable items = GetItems();
             // Update drop down menu with items
-            UpdateItemsDropdown(items);
+            UpdateItemsDropdown();
             // Update item table
             UpdateItemTable();
             // Clear the order basket
@@ -31,74 +29,59 @@ namespace Chocs_Away_Order_System
             UpdateItemTable();
         }
 
-        // Get Products From Database
-        private DataTable GetItems()
-        {
-            // Create data table object to hold products from database
-            DataTable itemsDataTable = new DataTable();
-            // Create SQL connection
-            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
-            // Create SQL command using connection information
-            SqlCommand command = new SqlCommand("select * from Products", connection);
-            // Open the SQL connection
-            connection.Open();
-            // create data adapter
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            // this will query your database and return the result to your datatable
-            dataAdapter.Fill(itemsDataTable);
-            // Close the SQL connection
-            connection.Close();
-            // Close the data adapter
-            dataAdapter.Dispose();
-            // Return data table with new results
-            return itemsDataTable;
-        }
-
         // Add Product Database Values to Items Dropdown (ComboBox)
-        private void UpdateItemsDropdown(DataTable dataTable)
+        private void UpdateItemsDropdown()
         {
-            foreach (DataRow row in dataTable.Rows)
+            // For each row in products database get product
+            using (var db = new chocsawayEntities())
             {
-                // Get specific details from data table
-                string itemName = row["ProductName"].ToString();         // Get product name
-
-                // Add Data to dropdown
-                Item_ComboBox.Items.Add(itemName);
-            }
-        }
-
-        // Add Product Database Values to Items Dropdown (ComboBox)
-        private void UpdateItemDetails(DataTable dataTable,string itemName)
-        {
-            // Iterate through each row in the data table
-            foreach (DataRow row in dataTable.Rows)
-            {
-                // If row item in column product name is same as paramater item name provided
-                if (row["ProductName"].ToString() == itemName)
+                foreach (Product p in db.Products)
                 {
-                    // Set price box text as the price of that item
-                    Price_TextBox.Text = "£" + Math.Round(Convert.ToDouble(row["UnitPrice"]), 2).ToString();
-                    // Set desctiption box text as the item description
-                    Description_TextBox.Text = row["Description"].ToString();
-                }      
-            }
-        }
-
-        // Add Product Database Values to Items Dropdown (ComboBox)
-        private DataRow GetItemDetails(DataTable dataTable, string itemName)
-        {
-            // Iterate through each row in the data table
-            foreach (DataRow row in dataTable.Rows)
-            {
-                // If the product name column in the row is the same as the item name
-                if (row["ProductName"].ToString() == itemName)
-                {
-                    // Return the row from the datatable
-                    return row;
+                    Item_ComboBox.Items.Add(p.ProductName);
                 }
             }
-            // Return nothing
-            return null;
+        }
+
+        // Add Product Database Values to Items Dropdown (ComboBox)
+        private void UpdateItemDetails(string itemName)
+        {
+            // For each row in products database get product
+            using (var db = new chocsawayEntities())
+            {
+                // Iterate through each product in the database
+                foreach (Product p in db.Products)
+                {
+                    // If the product name is the search item name
+                    if (p.ProductName == itemName)
+                    {
+                        // Set price box text as the price of that item
+                        Price_TextBox.Text = "£" + Math.Round(p.UnitPrice, 2).ToString();
+                        // Set desctiption box text as the item description
+                        Description_TextBox.Text = p.Description.ToString();
+                    }
+                }
+            }
+        }
+
+        // Add Product Database Values to Items Dropdown (ComboBox)
+        private void AddItemToBasket (string itemName)
+        {
+            // For each row in products database get product
+            using (var db = new chocsawayEntities())
+            {
+                // Iterate through each product in the database
+                foreach (Product p in db.Products)
+                {
+                    // If the product name is the search item name
+                    if (p.ProductName == itemName)
+                    {
+                        // Add the item to the order basket
+                        orderBasket.AddItem(Convert.ToInt32(p.ProductNumber),p.ProductName.ToString(), Convert.ToDouble(p.UnitPrice), Convert.ToInt32(Quantity_NumericUpDown.Text),p.Description.ToString());
+                        // Update the item table (data grid view table)
+                        UpdateItemTable();
+                    }
+                }
+            }
         }
 
         // Function to update the item table with items
@@ -213,11 +196,8 @@ namespace Chocs_Away_Order_System
         // When the add button has clicked, this function runs
         private void Add_Button_Click(object sender, EventArgs e)
         {
-            // Get the details of the item selected in the drop down box
-            DataRow item = GetItemDetails(GetItems(), Item_ComboBox.Text);
-            // Add the item to the order basket
-            orderBasket.AddItem(Convert.ToInt32(item["ProductNumber"]), item["ProductName"].ToString(), Convert.ToDouble(item["UnitPrice"]), Convert.ToInt32(Quantity_NumericUpDown.Text), item["Description"].ToString());
-            // Update the item table (data grid view table)
+            // Add item to basket
+            AddItemToBasket(Item_ComboBox.Text);
             UpdateItemTable();
         }
 
@@ -230,7 +210,7 @@ namespace Chocs_Away_Order_System
         private void Item_ComboBox_TextChanged(object sender, EventArgs e)
         {
             // Update the item details
-            UpdateItemDetails(GetItems(), Item_ComboBox.Text);
+            UpdateItemDetails(Item_ComboBox.Text);
         }
 
         // Function to update the totals of the basket show in the form
@@ -262,6 +242,11 @@ namespace Chocs_Away_Order_System
 
         private void Quantity_NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+        }
+
+        private void Price_TextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

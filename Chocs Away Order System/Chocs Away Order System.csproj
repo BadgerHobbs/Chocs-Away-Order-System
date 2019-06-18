@@ -32,9 +32,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +68,24 @@
     <Compile Include="AddCutomer.cs" />
     <Compile Include="BasketItem.cs" />
     <Compile Include="CheckoutOrder.cs" />
+    <Compile Include="ChocsAwayDatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChocsAwayDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChocsAwayDatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChocsAwayDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChocsAwayDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChocsAwayDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>ChocsAwayDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomerOrderHistory_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,12 +98,21 @@
     <Compile Include="Customers_Form.Designer.cs">
       <DependentUpon>Customers_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>ChocsAwayDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderBasket.cs" />
     <Compile Include="OrderBasket_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrderBasket_Form.Designer.cs">
       <DependentUpon>OrderBasket_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>ChocsAwayDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>ChocsAwayDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,7 +137,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="ChocsAwayDatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ChocsAwayDatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ChocsAwayDatabase.edmx.diagram">
+      <DependentUpon>ChocsAwayDatabase.edmx</DependentUpon>
+    </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +158,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ChocsAwayDatabase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ChocsAwayDatabase.Context.cs</LastGenOutput>
+      <DependentUpon>ChocsAwayDatabase.edmx</DependentUpon>
+    </Content>
+    <Content Include="ChocsAwayDatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChocsAwayDatabase.edmx</DependentUpon>
+      <LastGenOutput>ChocsAwayDatabase.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

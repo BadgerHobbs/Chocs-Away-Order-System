@@ -43,6 +43,7 @@
             this.Item_ComboBox = new System.Windows.Forms.ComboBox();
             this.Description_TextBox = new System.Windows.Forms.TextBox();
             this.Item_Panel = new System.Windows.Forms.Panel();
+            this.Quantity_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Add_Button = new System.Windows.Forms.Button();
             this.Price_TextBox = new System.Windows.Forms.TextBox();
             this.Description_Label = new System.Windows.Forms.TextBox();
@@ -61,13 +62,12 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Basket_Label = new System.Windows.Forms.Label();
             this.OrderSummary_Panel.SuspendLayout();
             this.Item_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
             this.Basket_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Basket_DataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // OrderSummary_Panel
@@ -230,6 +230,7 @@
             this.Description_TextBox.Location = new System.Drawing.Point(341, 34);
             this.Description_TextBox.Multiline = true;
             this.Description_TextBox.Name = "Description_TextBox";
+            this.Description_TextBox.ReadOnly = true;
             this.Description_TextBox.Size = new System.Drawing.Size(269, 45);
             this.Description_TextBox.TabIndex = 3;
             this.Description_TextBox.Text = "Description";
@@ -246,6 +247,26 @@
             this.Item_Panel.Name = "Item_Panel";
             this.Item_Panel.Size = new System.Drawing.Size(897, 87);
             this.Item_Panel.TabIndex = 11;
+            // 
+            // Quantity_NumericUpDown
+            // 
+            this.Quantity_NumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Quantity_NumericUpDown.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quantity_NumericUpDown.Location = new System.Drawing.Point(632, 41);
+            this.Quantity_NumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Quantity_NumericUpDown.Name = "Quantity_NumericUpDown";
+            this.Quantity_NumericUpDown.Size = new System.Drawing.Size(64, 27);
+            this.Quantity_NumericUpDown.TabIndex = 23;
+            this.Quantity_NumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Quantity_NumericUpDown.ValueChanged += new System.EventHandler(this.Quantity_NumericUpDown_ValueChanged);
             // 
             // Add_Button
             // 
@@ -272,6 +293,7 @@
             this.Price_TextBox.TabIndex = 4;
             this.Price_TextBox.Text = "£0.00";
             this.Price_TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Price_TextBox.TextChanged += new System.EventHandler(this.Price_TextBox_TextChanged);
             // 
             // Description_Label
             // 
@@ -465,26 +487,6 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // Quantity_NumericUpDown
-            // 
-            this.Quantity_NumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Quantity_NumericUpDown.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity_NumericUpDown.Location = new System.Drawing.Point(632, 41);
-            this.Quantity_NumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Quantity_NumericUpDown.Name = "Quantity_NumericUpDown";
-            this.Quantity_NumericUpDown.Size = new System.Drawing.Size(64, 27);
-            this.Quantity_NumericUpDown.TabIndex = 23;
-            this.Quantity_NumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Quantity_NumericUpDown.ValueChanged += new System.EventHandler(this.Quantity_NumericUpDown_ValueChanged);
-            // 
             // Basket_Label
             // 
             this.Basket_Label.AutoSize = true;
@@ -519,9 +521,9 @@
             this.OrderSummary_Panel.PerformLayout();
             this.Item_Panel.ResumeLayout(false);
             this.Item_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).EndInit();
             this.Basket_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Basket_DataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,57 +17,7 @@ namespace Chocs_Away_Order_System
         {
             InitializeComponent();
             // Update the orders table with the orders from the database from this customer
-            UpdateOrdersTable(GetOrders());
-        }
-
-        // Get Order From Database
-        private DataTable GetOrders()
-        {
-            // Create data table object to hold products from database
-            DataTable OrderDataTable = new DataTable();
-            // Create SQL connection
-            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
-            // Create SQL command using connection information
-            SqlCommand command = new SqlCommand("select * from Orders where CustomerNumber=@customerNumber", connection);
-            // Open the SQL connection
-            connection.Open();
-            // create data adapter
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            // Add customer number value to SQL seach query command
-            command.Parameters.AddWithValue("@customerNumber", Customers_Form.chosenCustomerNumber);
-            // this will query your database and return the result to your datatable
-            dataAdapter.Fill(OrderDataTable);
-            // Close the SQL connection
-            connection.Close();
-            // Close the data adapter
-            dataAdapter.Dispose();
-            // Return data table with new results
-            return OrderDataTable;
-        }
-
-        // Get Order Items From Database
-        private DataTable GetOrderItems(int orderNumber)
-        {
-            // Create data table object to hold products from database
-            DataTable OrderItemsDataTable = new DataTable();
-            // Create SQL connection
-            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
-            // Create SQL command using connection information
-            SqlCommand command = new SqlCommand("select * from OrderItems where OrderNumber=@orderNumber", connection);
-            // Open the SQL connection
-            connection.Open();
-            // create data adapter
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            // Add order number value to SQL seach query command
-            command.Parameters.AddWithValue("@orderNumber", orderNumber);
-            // this will query your database and return the result to your datatable
-            dataAdapter.Fill(OrderItemsDataTable);
-            // Close the SQL connection
-            connection.Close();
-            // Close the data adapter
-            dataAdapter.Dispose();
-            // Return data table with new results
-            return OrderItemsDataTable;
+            UpdateOrdersTable();
         }
 
         // Get customer name from customer number
@@ -75,24 +25,18 @@ namespace Chocs_Away_Order_System
         {
             string customerName = "";
 
-            // Create data table object to hold products from database
-            DataTable OrderDataTable = new DataTable();
-            // Create SQL connection
-            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
-            // Create SQL command using connection information
-            SqlCommand command = new SqlCommand("select CustomerName from Customers where CustomerNumber=@customerNumber", connection);
-            // Open the SQL connection
-            connection.Open();
-            // create data adapter
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            // Add customer number value to SQL seach query command
-            command.Parameters.AddWithValue("@customerNumber", customerNumber);
-            // this will query your database and return the result to your datatable
-            customerName = command.ExecuteScalar().ToString();
-            // Close the SQL connection
-            connection.Close();
-            // Close the data adapter
-            dataAdapter.Dispose();
+            // For each row in orders database of orders
+            using (var db = new chocsawayEntities())
+            {
+                foreach (Customer o in db.Customers)
+                {
+                    if (o.CustomerNumber == customerNumber)
+                    {
+                        customerName = o.CustomerName;
+                    }
+                }
+            }
+
             // Return data table with new results
             return customerName;
         }
@@ -102,68 +46,74 @@ namespace Chocs_Away_Order_System
         {
             string productName = "";
 
-            // Create data table object to hold products from database
-            DataTable OrderDataTable = new DataTable();
-            // Create SQL connection
-            SqlConnection connection = new SqlConnection(@"Server=ANDREW-PC\SQLEXPRESS;Database=ChocsAway;Trusted_Connection=true");
-            // Create SQL command using connection information
-            SqlCommand command = new SqlCommand("select ProductName from Products where ProductNumber=@productNumber", connection);
-            // Open the SQL connection
-            connection.Open();
-            // create data adapter
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            // Add customer number value to SQL seach query command
-            command.Parameters.AddWithValue("@productNumber", productNumber);
-            // this will query your database and return the result to your datatable
-            productName = command.ExecuteScalar().ToString();
-            // Close the SQL connection
-            connection.Close();
-            // Close the data adapter
-            dataAdapter.Dispose();
+            // For each row in orders database of orders
+            using (var db = new chocsawayEntities())
+            {
+                foreach (Product p in db.Products)
+                {
+                    if (p.ProductNumber == productNumber)
+                    {
+                        productName = p.ProductName;
+                    }
+                }
+            }
+
             // Return data table with new results
             return productName;
         }
 
 
         // Add Customers Database Values to Orders Table (DataGridView)
-        private void UpdateOrdersTable(DataTable dataTable)
+        private void UpdateOrdersTable()
         {
-            // Iterate through each row in the data table
-            foreach (DataRow row in dataTable.Rows)
+            // For each row in orders database of orders
+            using (var db = new chocsawayEntities())
             {
-                // Get specific details from data table
-                string orderNumber = row["OrderNumber"].ToString();         // Get customer orderNumber
-                string customerNumber = row["CustomerNumber"].ToString();   // Get customer customerNumber
-                string orderDate = row["OrderDate"].ToString();             // Get customer orderDate
-                string orderTotal = "£" + Math.Round(Convert.ToDouble(row["OrderTotal"]),2).ToString();           // Get customer orderTotal
-                string orderStatus = row["OrderStatus"].ToString();         // Get customer orderStatus
+                foreach (Order c in db.Orders)
+                {
+                    if (c.CustomerNumber == Convert.ToInt32(Customers_Form.chosenCustomerNumber))
+                    {
+                        // Get specific details from data table
+                        string orderNumber = c.OrderNumber.ToString();                                      // Get customer orderNumber
+                        string customerNumber = c.CustomerNumber.ToString();                                // Get customer customerNumber
+                        string orderDate = c.OrderDate.ToString();                                          // Get customer orderDate
+                        string orderTotal = "£" + Math.Round(Convert.ToDouble(c.OrderTotal), 2).ToString(); // Get customer orderTotal
+                        string orderStatus = c.OrderStatus.ToString();                                      // Get customer orderStatus
 
-                // Get Customer Name
-                string customerName = GetCustomerName(Convert.ToInt32(customerNumber));
+                        // Get Customer Name
+                        string customerName = GetCustomerName(Convert.ToInt32(customerNumber));
 
-                // Add Data to table
-                CutomerOrders_DataGridView.Rows.Add(customerName, orderNumber, orderDate, orderStatus, orderTotal);
+                        // Add Data to table
+                        CutomerOrders_DataGridView.Rows.Add(customerName, orderNumber, orderDate, orderStatus, orderTotal);
+                    }
+                }
             }
         }
 
         // Add Customers Database Values of orders to Customer Table (DataGridView)
-        private void UpdateOrderItemsTable(DataTable dataTable)
+        private void UpdateOrderItemsTable(int orderNumber)
         {
             // Clear the order items data grid view table of rows
             OrderItems_DataGridView.Rows.Clear();
-            // Iterate through each row in the data table
-            foreach (DataRow row in dataTable.Rows)
+
+            // For each row in orders database of orders
+            using (var db = new chocsawayEntities())
             {
-                // Get specific details from data table
-                string orderNumber = row["OrderNumber"].ToString();         // Get customer orderNumber
-                string productNumber = row["ProductNumber"].ToString();   // Get customer customerNumber
-                string quantity = row["Quantity"].ToString();             // Get customer orderDate
+                foreach (OrderItem o in db.OrderItems)
+                {
+                    if (o.OrderNumber == orderNumber)
+                    {
+                        // Get specific details from data table
+                        string productNumber =o.ProductNumber.ToString();   // Get customer customerNumber
+                        string quantity = o.Quantity.ToString();             // Get customer orderDate
 
-                // Get product name
-                string productName = GetProductName(Convert.ToInt32(productNumber));
+                        // Get product name
+                        string productName = GetProductName(Convert.ToInt32(productNumber));
 
-                // Add Data to table
-                OrderItems_DataGridView.Rows.Add(orderNumber, productNumber, productName, quantity);
+                        // Add Data to table
+                        OrderItems_DataGridView.Rows.Add(orderNumber, productNumber, productName, quantity);
+                    }
+                }
             }
         }
 
@@ -177,7 +127,7 @@ namespace Chocs_Away_Order_System
             // Get the chosen order number from that row
             int chosenOrderNumber = Convert.ToInt32(selectedRow.Cells["OrderNumber"].Value);
             // Update order items table with the items from that order
-            UpdateOrderItemsTable(GetOrderItems(chosenOrderNumber));
+            UpdateOrderItemsTable(chosenOrderNumber);
         }
 
         // Function to run when a cell has been clicked
