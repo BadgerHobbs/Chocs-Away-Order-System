@@ -21,7 +21,7 @@ namespace Chocs_Away_Order_System
         }
 
         // Get customer name from customer number
-        private string GetCustomerName(int customerNumber)
+        public string GetCustomerName(int customerNumber)
         {
             string customerName = "";
 
@@ -42,7 +42,7 @@ namespace Chocs_Away_Order_System
         }
 
         // Get Product name from Product number
-        private string GetProductName(int productNumber)
+        public string GetProductName(int productNumber)
         {
             string productName = "";
 
@@ -77,8 +77,21 @@ namespace Chocs_Away_Order_System
                         string orderNumber = c.OrderNumber.ToString();                                      // Get customer orderNumber
                         string customerNumber = c.CustomerNumber.ToString();                                // Get customer customerNumber
                         string orderDate = c.OrderDate.ToString();                                          // Get customer orderDate
-                        string orderTotal = "£" + Math.Round(Convert.ToDouble(c.OrderTotal), 2).ToString(); // Get customer orderTotal
-                        string orderStatus = c.OrderStatus.ToString();                                      // Get customer orderStatus
+                        double orderTotal = Math.Round(Convert.ToDouble(c.OrderTotal), 2);                  // Get customer orderTotal
+                        string orderStatus = "";                                                            // Set customer orderStatus
+
+                        if (c.OrderStatus.ToString() == "1")
+                        {
+                            orderStatus = "Taken";
+                        }
+                        else if (c.OrderStatus.ToString() == "2")
+                        {
+                            orderStatus = "Dispatched";
+                        }
+                        else if (c.OrderStatus.ToString() == "3")
+                        {
+                            orderStatus = "Waiting for Stock";
+                        }
 
                         // Get Customer Name
                         string customerName = GetCustomerName(Convert.ToInt32(customerNumber));

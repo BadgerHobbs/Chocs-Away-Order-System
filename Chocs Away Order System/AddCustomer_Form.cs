@@ -42,12 +42,12 @@ namespace Chocs_Away_Order_System
             this.Close();
         }
 
-        private bool CheckForm()
+        public bool CheckForm()
         {
             bool isValid = true;
 
             // Check First Name
-            if ((Regex.Match(FirstName_TextBox.Text, @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$").Success == true) || (FirstName_TextBox.Text == ""))
+            if (!CheckName(FirstName_TextBox.Text))
             {
                 FirstName_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -57,7 +57,7 @@ namespace Chocs_Away_Order_System
                 FirstName_TextBox.BackColor = Color.LightGreen;
             }
             // Check Last Name
-            if ((Regex.Match(LastName_TextBox.Text, @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$").Success == true) || (LastName_TextBox.Text == ""))
+            if (!CheckName(LastName_TextBox.Text))
             {
                 LastName_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -67,7 +67,7 @@ namespace Chocs_Away_Order_System
                 LastName_TextBox.BackColor = Color.LightGreen;
             }
             // Check Anything in address line 1
-            if (AddressLine1_TextBox.Text.Count() == 0)
+            if (!CheckAddress(AddressLine1_TextBox.Text))
             {
                 AddressLine1_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -77,7 +77,7 @@ namespace Chocs_Away_Order_System
                 AddressLine1_TextBox.BackColor = Color.LightGreen;
             }
             // Check postcode
-            if (Regex.Match(Postcode_TextBox.Text.ToLower(), @"^(GIR 0AA)|[a-z-[qvx]](?:\d|\d{2}|[a-z-[qvx]]\d|[a-z-[qvx]]\d[a-z-[qvx]]|[a-z-[qvx]]\d{2})(?:\s?\d[a-z-[qvx]]{2})?$").Success == false)
+            if (!CheckPostcode(Postcode_TextBox.Text))
             {
                 Postcode_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -87,7 +87,7 @@ namespace Chocs_Away_Order_System
                 Postcode_TextBox.BackColor = Color.LightGreen;
             }
             // Check phone number
-            if (CheckValidPhoneNumber(PhoneNumber_TextBox.Text) == false)
+            if (!CheckValidPhoneNumber(PhoneNumber_TextBox.Text))
             {
                 PhoneNumber_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -97,7 +97,7 @@ namespace Chocs_Away_Order_System
                 PhoneNumber_TextBox.BackColor = Color.LightGreen;
             }
             // check email address
-            if (CheckValidEmailAddress(EmailAddress_TextBox.Text) == false)
+            if (!CheckValidEmailAddress(EmailAddress_TextBox.Text))
             {
                 EmailAddress_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -107,7 +107,7 @@ namespace Chocs_Away_Order_System
                 EmailAddress_TextBox.BackColor = Color.LightGreen;
             }
             // check security question
-            if ((Regex.Match(SecurityQuestion_TextBox.Text, @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$").Success == true) || (SecurityQuestion_TextBox.Text == ""))
+            if (!CheckSecurityQuestion(SecurityQuestion_TextBox.Text))
             {
                 SecurityQuestion_TextBox.BackColor = Color.Salmon;
                 isValid = false;
@@ -120,8 +120,13 @@ namespace Chocs_Away_Order_System
             return isValid;
         }
 
-        private bool CheckValidEmailAddress(string emailAddress)
+        public bool CheckValidEmailAddress(string emailAddress)
         {
+            if (emailAddress == "")
+            {
+                return false;
+            }
+
             try
             {
                 var address = new System.Net.Mail.MailAddress(emailAddress);
@@ -133,9 +138,60 @@ namespace Chocs_Away_Order_System
             }
         }
         
-        private bool CheckValidPhoneNumber(string phoneNumber)
+        public bool CheckValidPhoneNumber(string phoneNumber)
         {
             return Regex.Match(phoneNumber, @"^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}(\s?\#(\d{4}|\d{3}))?$").Success;
+        }
+
+        public bool CheckName(string name)
+        {
+            if (name == "")
+            {
+                return false;
+            }
+
+            // Check First Name
+            return (!(Regex.Match(name.ToLower(), @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$").Success));
+            
+        }
+
+        public bool CheckAddress(string address)
+        {
+            // Check Anything in address line 1
+            if (address.Count() == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool CheckPostcode(string postcode)
+        {
+            // Check postcode
+            if (Regex.Match(postcode.ToLower(), @"^(GIR 0AA)|[a-z-[qvx]](?:\d|\d{2}|[a-z-[qvx]]\d|[a-z-[qvx]]\d[a-z-[qvx]]|[a-z-[qvx]]\d{2})(?:\s?\d[a-z-[qvx]]{2})?$").Success == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool CheckSecurityQuestion(string securityQuestion)
+        {
+            // check security question
+            if ((Regex.Match(securityQuestion.ToLower(), @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$").Success == true) || (securityQuestion.Count() == 0))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

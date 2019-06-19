@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chocs_Away_Order_System
 {
-    class CheckoutOrder
+    public class CheckoutOrder
     {
         // Initialse order number
         static int orderNumber = 0;
@@ -30,7 +30,6 @@ namespace Chocs_Away_Order_System
                 orderNumber = newOrder.OrderNumber;
             }
         }
-        
 
         // Get Order From Database
         public static void AddOrderItems()

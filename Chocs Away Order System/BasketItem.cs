@@ -87,7 +87,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
-        public double TotalValueOfBasket
+        public double TotalValueOfBasketItem
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Chocs_Away_Order_System
             // Increase quantity by increase number
             this.Quantity += increase;
             // Recalculate basket value by price times quantity
-            TotalValueOfBasket = LatestPrice * Quantity;
+            TotalValueOfBasketItem = LatestPrice * Quantity;
         }
     }
 }

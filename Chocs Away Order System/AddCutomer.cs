@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chocs_Away_Order_System
 {
-    class AddCutomer
+    public class AddCutomer
     {
         // Get Order From Database
         public static void AddCustomer(string customerName, string addressLine1, string addressLine2, string addressLine3, string postcode, string phone, string email, string securityQuestion, string securityQuestionAnswer)

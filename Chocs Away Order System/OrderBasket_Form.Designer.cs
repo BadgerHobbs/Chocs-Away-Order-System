@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.OrderSummary_Panel = new System.Windows.Forms.Panel();
             this.ProductsNumber_Label = new System.Windows.Forms.Label();
             this.Products_Label = new System.Windows.Forms.Label();
@@ -56,13 +58,13 @@
             this.Exit_Button = new System.Windows.Forms.Button();
             this.Basket_Panel = new System.Windows.Forms.Panel();
             this.Basket_DataGridView = new System.Windows.Forms.DataGridView();
+            this.Basket_Label = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Basket_Label = new System.Windows.Forms.Label();
             this.OrderSummary_Panel.SuspendLayout();
             this.Item_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
@@ -440,6 +442,16 @@
             this.Basket_DataGridView.Size = new System.Drawing.Size(702, 356);
             this.Basket_DataGridView.TabIndex = 22;
             // 
+            // Basket_Label
+            // 
+            this.Basket_Label.AutoSize = true;
+            this.Basket_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Basket_Label.Location = new System.Drawing.Point(11, 102);
+            this.Basket_Label.Name = "Basket_Label";
+            this.Basket_Label.Size = new System.Drawing.Size(57, 20);
+            this.Basket_Label.TabIndex = 22;
+            this.Basket_Label.Text = "Basket";
+            // 
             // id
             // 
             this.id.DataPropertyName = "id";
@@ -466,6 +478,10 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "price";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn4.FillWeight = 30F;
             this.dataGridViewTextBoxColumn4.HeaderText = "Price";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -474,6 +490,10 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "total";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn5.FillWeight = 30F;
             this.dataGridViewTextBoxColumn5.HeaderText = "Total";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -486,16 +506,6 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "Description";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // Basket_Label
-            // 
-            this.Basket_Label.AutoSize = true;
-            this.Basket_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Basket_Label.Location = new System.Drawing.Point(11, 102);
-            this.Basket_Label.Name = "Basket_Label";
-            this.Basket_Label.Size = new System.Drawing.Size(57, 20);
-            this.Basket_Label.TabIndex = 22;
-            this.Basket_Label.Text = "Basket";
             // 
             // OrderBasket_Form
             // 
@@ -558,13 +568,13 @@
         private System.Windows.Forms.Panel Basket_Panel;
         private System.Windows.Forms.DataGridView Basket_DataGridView;
         private System.Windows.Forms.Button Add_Button;
+        private System.Windows.Forms.NumericUpDown Quantity_NumericUpDown;
+        private System.Windows.Forms.Label Basket_Label;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.NumericUpDown Quantity_NumericUpDown;
-        private System.Windows.Forms.Label Basket_Label;
     }
 }

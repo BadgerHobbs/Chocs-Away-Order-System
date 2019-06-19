@@ -262,27 +262,26 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox FirstName_TextBox;
-        private System.Windows.Forms.TextBox AddressLine1_TextBox;
         private System.Windows.Forms.Label FirstName_Label;
         private System.Windows.Forms.Label AddressLine1_Label;
         private System.Windows.Forms.Label AdressLine2_Label;
-        private System.Windows.Forms.TextBox AddressLine2_TextBox;
         private System.Windows.Forms.Label AddressLine3_Label;
-        private System.Windows.Forms.TextBox AddressLine3_TextBox;
         private System.Windows.Forms.Label Postcode_Label;
-        private System.Windows.Forms.TextBox Postcode_TextBox;
         private System.Windows.Forms.Label PhoneNumber_Label;
-        private System.Windows.Forms.TextBox PhoneNumber_TextBox;
         private System.Windows.Forms.Label EmailAddress_Label;
-        private System.Windows.Forms.TextBox EmailAddress_TextBox;
-        private System.Windows.Forms.ComboBox SecurityQuestion_ComboBox;
-        private System.Windows.Forms.TextBox SecurityQuestion_TextBox;
         private System.Windows.Forms.Label SecurityQuestion_Label;
-        private System.Windows.Forms.TextBox LastName_TextBox;
         private System.Windows.Forms.Label LastName_Label;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Submit_Button;
+        public System.Windows.Forms.TextBox FirstName_TextBox;
+        public System.Windows.Forms.TextBox AddressLine1_TextBox;
+        public System.Windows.Forms.TextBox AddressLine2_TextBox;
+        public System.Windows.Forms.TextBox AddressLine3_TextBox;
+        public System.Windows.Forms.TextBox Postcode_TextBox;
+        public System.Windows.Forms.TextBox PhoneNumber_TextBox;
+        public System.Windows.Forms.TextBox EmailAddress_TextBox;
+        public System.Windows.Forms.ComboBox SecurityQuestion_ComboBox;
+        public System.Windows.Forms.TextBox SecurityQuestion_TextBox;
+        public System.Windows.Forms.TextBox LastName_TextBox;
     }
 }
