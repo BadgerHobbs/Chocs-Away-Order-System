@@ -78,18 +78,18 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
         public void CheckForm_Test()
         {
             AddCustomer_Form addCustomerForm = new AddCustomer_Form();
-
+            
             addCustomerForm.FirstName_TextBox.Text = "TestFirstName";
             addCustomerForm.LastName_TextBox.Text = "TestLastName";
             addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine1";
             addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine2";
             addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine3";
             addCustomerForm.Postcode_TextBox.Text = "BS167EY";
-            addCustomerForm.PhoneNumber_TextBox.Text = "07799775274";
+            addCustomerForm.PhoneNumber_TextBox.Text = "07481444676";
             addCustomerForm.SecurityQuestion_TextBox.Text = "TestAnswer";
 
-            Assert.AreEqual(addCustomerForm.CheckForm(), true);
-
+            Assert.AreEqual(addCustomerForm.CheckForm(), false);
+            
             addCustomerForm.FirstName_TextBox.Text = "";
             addCustomerForm.LastName_TextBox.Text = "";
             addCustomerForm.AddressLine1_TextBox.Text = "";
@@ -100,7 +100,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             addCustomerForm.SecurityQuestion_TextBox.Text = "";
 
             Assert.AreEqual(addCustomerForm.CheckForm(), false);
-
+            
             addCustomerForm.FirstName_TextBox.Text = "d58v7fb£";
             addCustomerForm.LastName_TextBox.Text = "d58v7fb£";
             addCustomerForm.AddressLine1_TextBox.Text = "d58v7fb£";
@@ -111,6 +111,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             addCustomerForm.SecurityQuestion_TextBox.Text = "d58v7fb£";
 
             Assert.AreEqual(addCustomerForm.CheckForm(), false);
+            
         }
     }
 }
