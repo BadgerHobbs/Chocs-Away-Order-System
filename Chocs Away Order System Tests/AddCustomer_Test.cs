@@ -70,7 +70,8 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             AddCustomer_Form addCustomerForm = new AddCustomer_Form();
 
             Assert.AreEqual(addCustomerForm.CheckSecurityQuestion("BS167ES"), true);
-            //Assert.AreEqual(addCustomerForm.CheckSecurityQuestion(""), false);
+            Assert.AreEqual(addCustomerForm.CheckSecurityQuestion(""), false);
+            Assert.AreEqual(addCustomerForm.CheckSecurityQuestion("d58v7fb£"), false);
         }
 
         // Test valid form
@@ -79,16 +80,17 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
         {
             AddCustomer_Form addCustomerForm = new AddCustomer_Form();
             
-            addCustomerForm.FirstName_TextBox.Text = "TestFirstName";
-            addCustomerForm.LastName_TextBox.Text = "TestLastName";
-            addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine1";
-            addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine2";
-            addCustomerForm.AddressLine1_TextBox.Text = "TestAddressLine3";
+            addCustomerForm.FirstName_TextBox.Text = "FirstName";
+            addCustomerForm.LastName_TextBox.Text = "LastName";
+            addCustomerForm.AddressLine1_TextBox.Text = "AddressLine1";
+            addCustomerForm.AddressLine1_TextBox.Text = "AddressLine2";
+            addCustomerForm.AddressLine1_TextBox.Text = "AddressLine3";
             addCustomerForm.Postcode_TextBox.Text = "BS167EY";
             addCustomerForm.PhoneNumber_TextBox.Text = "07481444676";
-            addCustomerForm.SecurityQuestion_TextBox.Text = "TestAnswer";
+            addCustomerForm.EmailAddress_TextBox.Text = "Test@TestMail.com";
+            addCustomerForm.SecurityQuestion_TextBox.Text = "Answer";
 
-            Assert.AreEqual(addCustomerForm.CheckForm(), false);
+            Assert.AreEqual(addCustomerForm.CheckForm(), true);
             
             addCustomerForm.FirstName_TextBox.Text = "";
             addCustomerForm.LastName_TextBox.Text = "";

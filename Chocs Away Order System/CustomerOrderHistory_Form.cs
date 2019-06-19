@@ -26,13 +26,13 @@ namespace Chocs_Away_Order_System
             string customerName = "";
 
             // For each row in orders database of orders
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                foreach (Customer o in db.Customers)
+                foreach (Customer customer in database.Customers)
                 {
-                    if (o.CustomerNumber == customerNumber)
+                    if (customer.CustomerNumber == customerNumber)
                     {
-                        customerName = o.CustomerName;
+                        customerName = customer.CustomerName;
                     }
                 }
             }
@@ -47,13 +47,13 @@ namespace Chocs_Away_Order_System
             string productName = "";
 
             // For each row in orders database of orders
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                foreach (Product p in db.Products)
+                foreach (Product product in database.Products)
                 {
-                    if (p.ProductNumber == productNumber)
+                    if (product.ProductNumber == productNumber)
                     {
-                        productName = p.ProductName;
+                        productName = product.ProductName;
                     }
                 }
             }
@@ -67,28 +67,28 @@ namespace Chocs_Away_Order_System
         private void UpdateOrdersTable()
         {
             // For each row in orders database of orders
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                foreach (Order c in db.Orders)
+                foreach (Order order in database.Orders)
                 {
-                    if (c.CustomerNumber == Convert.ToInt32(Customers_Form.chosenCustomerNumber))
+                    if (order.CustomerNumber == Convert.ToInt32(Customers_Form.chosenCustomerNumber))
                     {
                         // Get specific details from data table
-                        string orderNumber = c.OrderNumber.ToString();                                      // Get customer orderNumber
-                        string customerNumber = c.CustomerNumber.ToString();                                // Get customer customerNumber
-                        string orderDate = c.OrderDate.ToString();                                          // Get customer orderDate
-                        double orderTotal = Math.Round(Convert.ToDouble(c.OrderTotal), 2);                  // Get customer orderTotal
+                        string orderNumber = order.OrderNumber.ToString();                                      // Get customer orderNumber
+                        string customerNumber = order.CustomerNumber.ToString();                                // Get customer customerNumber
+                        string orderDate = order.OrderDate.ToString();                                          // Get customer orderDate
+                        double orderTotal = Math.Round(Convert.ToDouble(order.OrderTotal), 2);                  // Get customer orderTotal
                         string orderStatus = "";                                                            // Set customer orderStatus
 
-                        if (c.OrderStatus.ToString() == "1")
+                        if (order.OrderStatus.ToString() == "1")
                         {
                             orderStatus = "Taken";
                         }
-                        else if (c.OrderStatus.ToString() == "2")
+                        else if (order.OrderStatus.ToString() == "2")
                         {
                             orderStatus = "Dispatched";
                         }
-                        else if (c.OrderStatus.ToString() == "3")
+                        else if (order.OrderStatus.ToString() == "3")
                         {
                             orderStatus = "Waiting for Stock";
                         }
@@ -110,15 +110,15 @@ namespace Chocs_Away_Order_System
             OrderItems_DataGridView.Rows.Clear();
 
             // For each row in orders database of orders
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                foreach (OrderItem o in db.OrderItems)
+                foreach (OrderItem orderItem in database.OrderItems)
                 {
-                    if (o.OrderNumber == orderNumber)
+                    if (orderItem.OrderNumber == orderNumber)
                     {
                         // Get specific details from data table
-                        string productNumber =o.ProductNumber.ToString();   // Get customer customerNumber
-                        string quantity = o.Quantity.ToString();             // Get customer orderDate
+                        string productNumber = orderItem.ProductNumber.ToString();   // Get customer customerNumber
+                        string quantity = orderItem.Quantity.ToString();             // Get customer orderDate
 
                         // Get product name
                         string productName = GetProductName(Convert.ToInt32(productNumber));

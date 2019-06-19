@@ -37,11 +37,11 @@
             this.Postcode_TextBox = new System.Windows.Forms.TextBox();
             this.HouseNumber_TextBox = new System.Windows.Forms.TextBox();
             this.Filters_GroupBox = new System.Windows.Forms.GroupBox();
-            this.FirstName_Label = new System.Windows.Forms.Label();
-            this.Postcode_Label = new System.Windows.Forms.Label();
-            this.HouseNumber_Label = new System.Windows.Forms.Label();
-            this.LastName_TextBox = new System.Windows.Forms.TextBox();
             this.LastName_Label = new System.Windows.Forms.Label();
+            this.LastName_TextBox = new System.Windows.Forms.TextBox();
+            this.HouseNumber_Label = new System.Windows.Forms.Label();
+            this.Postcode_Label = new System.Windows.Forms.Label();
+            this.FirstName_Label = new System.Windows.Forms.Label();
             this.AddCustomer_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customers_DataGridView)).BeginInit();
             this.Filters_GroupBox.SuspendLayout();
@@ -143,23 +143,22 @@
             this.Filters_GroupBox.TabStop = false;
             this.Filters_GroupBox.Text = "Search Filters";
             // 
-            // FirstName_Label
+            // LastName_Label
             // 
-            this.FirstName_Label.AutoSize = true;
-            this.FirstName_Label.Location = new System.Drawing.Point(6, 20);
-            this.FirstName_Label.Name = "FirstName_Label";
-            this.FirstName_Label.Size = new System.Drawing.Size(57, 13);
-            this.FirstName_Label.TabIndex = 4;
-            this.FirstName_Label.Text = "First Name";
+            this.LastName_Label.AutoSize = true;
+            this.LastName_Label.Location = new System.Drawing.Point(115, 20);
+            this.LastName_Label.Name = "LastName_Label";
+            this.LastName_Label.Size = new System.Drawing.Size(58, 13);
+            this.LastName_Label.TabIndex = 8;
+            this.LastName_Label.Text = "Last Name";
             // 
-            // Postcode_Label
+            // LastName_TextBox
             // 
-            this.Postcode_Label.AutoSize = true;
-            this.Postcode_Label.Location = new System.Drawing.Point(227, 20);
-            this.Postcode_Label.Name = "Postcode_Label";
-            this.Postcode_Label.Size = new System.Drawing.Size(52, 13);
-            this.Postcode_Label.TabIndex = 5;
-            this.Postcode_Label.Text = "Postcode";
+            this.LastName_TextBox.Location = new System.Drawing.Point(118, 36);
+            this.LastName_TextBox.Name = "LastName_TextBox";
+            this.LastName_TextBox.Size = new System.Drawing.Size(106, 20);
+            this.LastName_TextBox.TabIndex = 7;
+            this.LastName_TextBox.TextChanged += new System.EventHandler(this.LastName_TextBox_TextChanged);
             // 
             // HouseNumber_Label
             // 
@@ -170,22 +169,23 @@
             this.HouseNumber_Label.TabIndex = 6;
             this.HouseNumber_Label.Text = "House No.";
             // 
-            // LastName_TextBox
+            // Postcode_Label
             // 
-            this.LastName_TextBox.Location = new System.Drawing.Point(118, 36);
-            this.LastName_TextBox.Name = "LastName_TextBox";
-            this.LastName_TextBox.Size = new System.Drawing.Size(106, 20);
-            this.LastName_TextBox.TabIndex = 7;
-            this.LastName_TextBox.TextChanged += new System.EventHandler(this.LastName_TextBox_TextChanged);
+            this.Postcode_Label.AutoSize = true;
+            this.Postcode_Label.Location = new System.Drawing.Point(227, 20);
+            this.Postcode_Label.Name = "Postcode_Label";
+            this.Postcode_Label.Size = new System.Drawing.Size(52, 13);
+            this.Postcode_Label.TabIndex = 5;
+            this.Postcode_Label.Text = "Postcode";
             // 
-            // LastName_Label
+            // FirstName_Label
             // 
-            this.LastName_Label.AutoSize = true;
-            this.LastName_Label.Location = new System.Drawing.Point(115, 20);
-            this.LastName_Label.Name = "LastName_Label";
-            this.LastName_Label.Size = new System.Drawing.Size(58, 13);
-            this.LastName_Label.TabIndex = 8;
-            this.LastName_Label.Text = "Last Name";
+            this.FirstName_Label.AutoSize = true;
+            this.FirstName_Label.Location = new System.Drawing.Point(6, 20);
+            this.FirstName_Label.Name = "FirstName_Label";
+            this.FirstName_Label.Size = new System.Drawing.Size(57, 13);
+            this.FirstName_Label.TabIndex = 4;
+            this.FirstName_Label.Text = "First Name";
             // 
             // AddCustomer_Button
             // 

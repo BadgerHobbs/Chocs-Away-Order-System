@@ -22,11 +22,11 @@ namespace Chocs_Away_Order_System
             orderBasket.UpdateTotals();
 
             // For each row in customers database of customer details
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
                 Order newOrder = new Order() { CustomerNumber = Convert.ToInt32(Customers_Form.chosenCustomerNumber), OrderDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.sss")), OrderTotal = Convert.ToDecimal(orderBasket.BasketTotal), OrderStatus = 1 };
-                db.Orders.Add(newOrder);
-                db.SaveChanges();
+                database.Orders.Add(newOrder);
+                database.SaveChanges();
                 orderNumber = newOrder.OrderNumber;
             }
         }
@@ -45,10 +45,10 @@ namespace Chocs_Away_Order_System
             foreach (BasketItem basketItem in orderBasket.BasketItems)
             {
                 // For each row in customers database of customer details
-                using (var db = new chocsawayEntities())
+                using (var database = new chocsawayEntities())
                 {
-                    db.OrderItems.Add(new OrderItem() { OrderNumber = orderNumber, ProductNumber = basketItem.ProductNumber, Quantity = basketItem.Quantity });
-                    db.SaveChanges();
+                    database.OrderItems.Add(new OrderItem() { OrderNumber = orderNumber, ProductNumber = basketItem.ProductNumber, Quantity = basketItem.Quantity });
+                    database.SaveChanges();
                 }
             }
         }

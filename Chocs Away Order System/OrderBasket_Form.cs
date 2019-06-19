@@ -46,18 +46,18 @@ namespace Chocs_Away_Order_System
         private void UpdateItemDetails(string itemName)
         {
             // For each row in products database get product
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
                 // Iterate through each product in the database
-                foreach (Product p in db.Products)
+                foreach (Product product in database.Products)
                 {
                     // If the product name is the search item name
-                    if (p.ProductName == itemName)
+                    if (product.ProductName == itemName)
                     {
                         // Set price box text as the price of that item
-                        Price_TextBox.Text = "£" + Math.Round(p.UnitPrice, 2).ToString();
+                        Price_TextBox.Text = "£" + Math.Round(product.UnitPrice, 2).ToString();
                         // Set desctiption box text as the item description
-                        Description_TextBox.Text = p.Description.ToString();
+                        Description_TextBox.Text = product.Description.ToString();
                     }
                 }
             }
@@ -67,16 +67,16 @@ namespace Chocs_Away_Order_System
         private void AddItemToBasket (string itemName)
         {
             // For each row in products database get product
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
                 // Iterate through each product in the database
-                foreach (Product p in db.Products)
+                foreach (Product product in database.Products)
                 {
                     // If the product name is the search item name
-                    if (p.ProductName == itemName)
+                    if (product.ProductName == itemName)
                     {
                         // Add the item to the order basket
-                        orderBasket.AddItem(Convert.ToInt32(p.ProductNumber),p.ProductName.ToString(), Convert.ToDouble(p.UnitPrice), Convert.ToInt32(Quantity_NumericUpDown.Text),p.Description.ToString());
+                        orderBasket.AddItem(Convert.ToInt32(product.ProductNumber),product.ProductName.ToString(), Convert.ToDouble(product.UnitPrice), Convert.ToInt32(Quantity_NumericUpDown.Text),product.Description.ToString());
                         // Update the item table (data grid view table)
                         UpdateItemTable();
                     }

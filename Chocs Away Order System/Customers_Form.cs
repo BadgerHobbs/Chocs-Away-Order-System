@@ -32,17 +32,17 @@ namespace Chocs_Away_Order_System
             customers_DataGridView.Refresh();
 
             // For each row in customers database of customer details
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                var customers = db.Customers;
+                var customers = database.Customers;
 
-                foreach (Customer c in db.Customers)
+                foreach (Customer customer in database.Customers)
                 {
                     // Get specific details from data table
-                    string customerNumber = c.CustomerNumber.ToString();       // Get customer number
-                    string customerName = c.CustomerName.ToString();           // Get customer name
-                    string customerPostcode = c.Postcode.ToString();           // Get customer postcode
-                    string houseNumber = c.AddressLine1.ToString().Split()[0]; // Get customer adress and trim to only house number
+                    string customerNumber = customer.CustomerNumber.ToString();       // Get customer number
+                    string customerName = customer.CustomerName.ToString();           // Get customer name
+                    string customerPostcode = customer.Postcode.ToString();           // Get customer postcode
+                    string houseNumber = customer.AddressLine1.ToString().Split()[0]; // Get customer adress and trim to only house number
 
                     bool firstNameFilter = false;
                     bool lastNameFilter = false;
