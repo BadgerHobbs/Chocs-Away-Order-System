@@ -21,7 +21,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(15, basketItem.TotalValueOfBasketItem);
         }
 
-        // Test adding item to orderbasket
+        // Test increasing quantity of item in order basket
         [TestMethod]
         public void IncreaseQuantity_Test()
         {

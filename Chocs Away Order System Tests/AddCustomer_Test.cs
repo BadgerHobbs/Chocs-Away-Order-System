@@ -21,7 +21,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckValidEmailAddress(""), false);
         }
 
-        // Test valid email check
+        // Test valid phone number check
         [TestMethod]
         public void CheckValidPhoneNumber_Test()
         {
@@ -32,7 +32,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckValidPhoneNumber("+447481444676"), true);
         }
         
-        // Test valid form
+        // Test valid name test
         [TestMethod]
         public void CheckName_Test()
         {
@@ -42,7 +42,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckName(""), false);
         }
 
-        // Test valid form
+        // Test valid address test
         [TestMethod]
         public void CheckAddress_Test()
         {
@@ -52,7 +52,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckAddress(""), false);
         }
 
-        // Test valid form
+        // Test valid postcode test
         [TestMethod]
         public void CheckPostcode_Test()
         {
@@ -63,7 +63,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckPostcode(""), false);
         }
 
-        // Test valid form
+        // Test valid security queston check
         [TestMethod]
         public void CheckSecurityQuestion_Test()
         {
@@ -73,7 +73,7 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
             Assert.AreEqual(addCustomerForm.CheckSecurityQuestion(""), false);
         }
 
-        // Test valid form
+        // Test valid form test
         [TestMethod]
         public void CheckForm_Test()
         {
