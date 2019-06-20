@@ -15,6 +15,7 @@ namespace Chocs_Away_Order_System
         private string description;
         private double totalValueOfBasketItem;
 
+        // Initialisation of basket item method
         public BasketItem(int productNumber, string productName, double latestPrice, int quantity, string description)
         {
             // Set parameter values to item data variables

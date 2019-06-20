@@ -28,16 +28,19 @@ namespace Chocs_Away_Order_System
             // For each row in orders database of orders
             using (var database = new chocsawayEntities())
             {
+                // Iterate through each customer in customers database
                 foreach (Customer customer in database.Customers)
                 {
+                    // If the customer number is the search customer number
                     if (customer.CustomerNumber == customerNumber)
                     {
+                        // Set the customer name as database customer name
                         customerName = customer.CustomerName;
                     }
                 }
             }
 
-            // Return data table with new results
+            // Return the customer number
             return customerName;
         }
 
@@ -49,16 +52,19 @@ namespace Chocs_Away_Order_System
             // For each row in orders database of orders
             using (var database = new chocsawayEntities())
             {
+                // Iterate through each product in products database
                 foreach (Product product in database.Products)
                 {
+                    // If product number is search product number
                     if (product.ProductNumber == productNumber)
                     {
+                        // Set product name as database product name
                         productName = product.ProductName;
                     }
                 }
             }
 
-            // Return data table with new results
+            // Return the product name
             return productName;
         }
 
@@ -69,34 +75,42 @@ namespace Chocs_Away_Order_System
             // For each row in orders database of orders
             using (var database = new chocsawayEntities())
             {
+                // Iterate through each order in orders database
                 foreach (Order order in database.Orders)
                 {
+                    // If the order is for the current chosen customer (by comparing the customer number from the order and this customer number)
                     if (order.CustomerNumber == Convert.ToInt32(Customers_Form.chosenCustomerNumber))
                     {
                         // Get specific details from data table
-                        string orderNumber = order.OrderNumber.ToString();                                      // Get customer orderNumber
-                        string customerNumber = order.CustomerNumber.ToString();                                // Get customer customerNumber
-                        string orderDate = order.OrderDate.ToString();                                          // Get customer orderDate
-                        double orderTotal = Math.Round(Convert.ToDouble(order.OrderTotal), 2);                  // Get customer orderTotal
-                        string orderStatus = "";                                                            // Set customer orderStatus
+                        string orderNumber = order.OrderNumber.ToString();                      // Get customer orderNumber
+                        string customerNumber = order.CustomerNumber.ToString();                // Get customer customerNumber
+                        string orderDate = order.OrderDate.ToString();                          // Get customer orderDate
+                        double orderTotal = Math.Round(Convert.ToDouble(order.OrderTotal), 2);  // Get customer orderTotal
+                        string orderStatus = "1";                                               // Set customer orderStatus
 
+                        // If order status in database is 1
                         if (order.OrderStatus.ToString() == "1")
                         {
+                            // Set order status as taken
                             orderStatus = "Taken";
                         }
+                        // If order status is 2
                         else if (order.OrderStatus.ToString() == "2")
                         {
+                            // Set order status as dispatched
                             orderStatus = "Dispatched";
                         }
+                        // If order status is 3
                         else if (order.OrderStatus.ToString() == "3")
                         {
+                            // Set order status as waiting for stock
                             orderStatus = "Waiting for Stock";
                         }
 
                         // Get Customer Name
                         string customerName = GetCustomerName(Convert.ToInt32(customerNumber));
 
-                        // Add Data to table
+                        // Add Data to data table
                         CutomerOrders_DataGridView.Rows.Add(customerName, orderNumber, orderDate, orderStatus, orderTotal);
                     }
                 }

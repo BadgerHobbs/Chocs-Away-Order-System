@@ -63,7 +63,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
-        // Function to add item to basket
+        // Method to add item to basket
         public void AddItem(int productNumber, string productName, double latestPrice, int quantity, string description)
         {
             // Initialise index variable for position in basket item list
@@ -78,7 +78,7 @@ namespace Chocs_Away_Order_System
                     basketItems[index].IncreaseQuantity(quantity);
                     // Update totals of basket
                     UpdateTotals();
-                    // Exit function
+                    // Exit Method
                     return;
                 }
                 // Increase index position in list
@@ -90,7 +90,7 @@ namespace Chocs_Away_Order_System
             UpdateTotals();
         }
 
-        // Function to remove item from basket based on product number
+        // Method to remove item from basket based on product number
         public void RemoveItem(int productNumber)
         {
             // Iterate through each item in the basket
@@ -103,7 +103,7 @@ namespace Chocs_Away_Order_System
                     basketItems.Remove(basketItem);
                     // Update totals of basket
                     UpdateTotals();
-                    // Exit function
+                    // Exit Method
                     return;
                 }
             }
@@ -111,7 +111,7 @@ namespace Chocs_Away_Order_System
             UpdateTotals();
         }
 
-        // Function to clear basket of all items
+        // Method to clear basket of all items
         public void ClearBasket()
         {
             // Set basket items list as a new empty list of items
@@ -120,7 +120,7 @@ namespace Chocs_Away_Order_System
             UpdateTotals();
         }
 
-        // Function to update totals of basket
+        // Method to update totals of basket
         public void UpdateTotals()
         {
             // Recaltulate and set number of items
@@ -131,14 +131,14 @@ namespace Chocs_Away_Order_System
             BasketTotal = CalculateTotalCost();
         }
 
-        // Function to calculate and return number of products in basket
+        // Method to calculate and return number of products in basket
         private int CalculateNumberOfProducts()
         {
             // Return number items in basket
             return basketItems.Count;
         }
 
-        // Function to calculate and return number of items in basket
+        // Method to calculate and return number of items in basket
         private int CalculateNumberOfItems()
         {
             // Initalise variable to store number of items
@@ -153,7 +153,7 @@ namespace Chocs_Away_Order_System
             return numberOfItems;
         }
 
-        // Fcuntion to calculate the total cost of the basket
+        // Method to calculate the total cost of the basket
         private double CalculateTotalCost()
         {
             // Initialise variable to store total cost

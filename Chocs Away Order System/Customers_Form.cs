@@ -13,6 +13,7 @@ namespace Chocs_Away_Order_System
 {
     public partial class Customers_Form : Form
     {
+        // Initialte chosen customer name and number variables
         public static string chosenCustomerNumber;
         public static string chosenCustomerName;
 
@@ -43,41 +44,57 @@ namespace Chocs_Away_Order_System
                     string customerName = customer.CustomerName.ToString();           // Get customer name
                     string customerPostcode = customer.Postcode.ToString();           // Get customer postcode
                     string houseNumber = customer.AddressLine1.ToString().Split()[0]; // Get customer adress and trim to only house number
-
+                    
+                    // Create variables to set if different filters are enabled in search
                     bool firstNameFilter = false;
                     bool lastNameFilter = false;
                     bool postcodeFilter = false;
                     bool houseNumberFilter = false;
 
+                    // If first name text box is not empty
                     if (FirstName_TextBox.Text != "")
                     {
+                        // First name filter is enabled
                         firstNameFilter = true;
                     }
+
+                    // If last name text box is not empty
                     if (LastName_TextBox.Text != "")
                     {
+                        // last name filter is enabled
                         lastNameFilter = true;
                     }
+
+                    // If postcode text box is not empty
                     if (Postcode_TextBox.Text != "")
                     {
+                        // postcode filter is enabled
                         postcodeFilter = true;
                     }
+
+                    // If house number text box is not empty
                     if (HouseNumber_TextBox.Text != "")
                     {
+                        // house number filter is enabled
                         houseNumberFilter = true;
                     }
 
+                    // Initiate variable to show whether the customer fits the filter
                     bool fitsFilter = false;
 
                     // Check First Name
                     // If search box contains search text or is empty (no search query)
                     if (firstNameFilter == true)
                     {
+                        // If customer name contains the search text
                         if (customerName.ToLower().Contains(FirstName_TextBox.Text.ToLower()))
                         {
+                            // Customer name fits filter
                             fitsFilter = true;
                         }
                         else
                         {
+                            // Customer name does not fit filter
                             fitsFilter = false;
                         }
                     }
@@ -86,12 +103,15 @@ namespace Chocs_Away_Order_System
                     // If search box contains search text or is empty (no search query)
                     if (lastNameFilter == true)
                     {
+                        // If customer name contains the search text
                         if (customerName.ToLower().Contains(LastName_TextBox.Text.ToLower()))
                         {
+                            // Customer name fits filter
                             fitsFilter = true;
                         }
                         else
                         {
+                            // Customer name does not fit filter
                             fitsFilter = false;
                         }
                     }
@@ -99,12 +119,15 @@ namespace Chocs_Away_Order_System
                     // Check Postcode
                     if (postcodeFilter == true)
                     {
+                        // If postcode contains the search text
                         if (customerPostcode.ToLower().Contains(Postcode_TextBox.Text.ToLower()))
                         {
+                            // Postcode fits filter
                             fitsFilter = true;
                         }
                         else
                         {
+                            // Postcode does not fit filter
                             fitsFilter = false;
                         }
                     }
@@ -112,12 +135,15 @@ namespace Chocs_Away_Order_System
                     // Check House Number
                     if (houseNumberFilter == true)
                     {
+                        // If house number contains the search text
                         if (houseNumber.ToLower().Contains(HouseNumber_TextBox.Text.ToLower()))
                         {
+                            // House number fits filter
                             fitsFilter = true;
                         }
                         else
                         {
+                            // House number does not fit filter
                             fitsFilter = false;
                         }
                     }
@@ -176,26 +202,35 @@ namespace Chocs_Away_Order_System
             this.Show(); // Show this form
         }
 
+        // If search text in name text box has changed
         private void Name_TextBox_TextChanged(object sender, EventArgs e)
         {
+            // Update customers table
             UpdateCustomersTable();
         }
 
+        // If search text in postcode text box has changed
         private void Postcode_TextBox_TextChanged(object sender, EventArgs e)
         {
+            // Update customers table
             UpdateCustomersTable();
         }
 
+        // If search text in house number text box has changed
         private void HouseNumber_TextBox_TextChanged(object sender, EventArgs e)
         {
+            // Update customers table
             UpdateCustomersTable();
         }
 
+        // If search text in name text box has changed
         private void LastName_TextBox_TextChanged(object sender, EventArgs e)
         {
+            // Update customers table
             UpdateCustomersTable();
         }
 
+        // When add customer button is clicked
         private void AddCustomer_Button_Click(object sender, EventArgs e)
         {
             // Get index of row selected in data grid view (table)

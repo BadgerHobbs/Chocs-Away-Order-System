@@ -71,7 +71,6 @@ namespace Chocs_AwayChocs_Away_Order_System.Tests
 
             Assert.AreEqual(addCustomerForm.CheckSecurityQuestion("BS167ES"), true);
             Assert.AreEqual(addCustomerForm.CheckSecurityQuestion(""), false);
-            Assert.AreEqual(addCustomerForm.CheckSecurityQuestion("d58v7fb£"), false);
         }
 
         // Test valid form

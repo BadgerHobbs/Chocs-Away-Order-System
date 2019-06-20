@@ -33,16 +33,18 @@ namespace Chocs_Away_Order_System
         private void UpdateItemsDropdown()
         {
             // For each row in products database get product
-            using (var db = new chocsawayEntities())
+            using (var database = new chocsawayEntities())
             {
-                foreach (Product p in db.Products)
+                // Iterate through each product in products database
+                foreach (Product product in database.Products)
                 {
-                    Item_ComboBox.Items.Add(p.ProductName);
+                    // Add product (name) to drop down box
+                    Item_ComboBox.Items.Add(product.ProductName);
                 }
             }
         }
 
-        // Add Product Database Values to Items Dropdown (ComboBox)
+        // Add/Update product price and descripton of chosen product in drop down
         private void UpdateItemDetails(string itemName)
         {
             // For each row in products database get product
@@ -63,7 +65,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
-        // Add Product Database Values to Items Dropdown (ComboBox)
+        // Add product to orderbasket that is selected in drop down box
         private void AddItemToBasket (string itemName)
         {
             // For each row in products database get product
@@ -140,7 +142,8 @@ namespace Chocs_Away_Order_System
         // When customer order history form has been closed, this runs
         private void customerOrderHistoryFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close(); // Close this form
+            // Close this form
+            this.Close();
         }
 
         // When the remove button has been clicked, this function runs
@@ -198,6 +201,7 @@ namespace Chocs_Away_Order_System
         {
             // Add item to basket
             AddItemToBasket(Item_ComboBox.Text);
+            // Update the item table
             UpdateItemTable();
         }
 
