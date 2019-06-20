@@ -34,3 +34,7 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("Chocs Away Order System.Tests")]
+[assembly: InternalsVisibleTo("Chocs Away Order System.Explorables")]
+[assembly: InternalsVisibleTo("Generated_IntelliTests_Chocs Away Order System.Tests")]
+

@@ -100,7 +100,7 @@ namespace Chocs_Away_Order_System
             foreach (BasketItem basketItem in orderBasket.BasketItems)
             {
                 // Add item to the data grid view (table) as a row
-                Basket_DataGridView.Rows.Add(basketItem.ProductNumber, basketItem.ProductName, basketItem.Quantity, "£" + basketItem.LatestPrice.ToString(), "£" + (basketItem.LatestPrice * basketItem.Quantity).ToString(), basketItem.Description);
+                Basket_DataGridView.Rows.Add(basketItem.ProductNumber, basketItem.ProductName, basketItem.Quantity, basketItem.LatestPrice, basketItem.LatestPrice * basketItem.Quantity, basketItem.Description);
             }
 
             // Show/Hide buttons if any items are in the basket
@@ -225,7 +225,7 @@ namespace Chocs_Away_Order_System
             // Set the items number as that from the order basket
             ItemsNumber_Label.Text = orderBasket.NumberOfItems.ToString();
             // Set the total cost number as that from the order basket
-            TotalCost_Label.Text = "£" + orderBasket.BasketTotal.ToString();
+            TotalCost_Label.Text = "£" + Math.Round(orderBasket.BasketTotal, 2).ToString("N2");
         }
 
         private void TotalCost_Label_Click(object sender, EventArgs e)
