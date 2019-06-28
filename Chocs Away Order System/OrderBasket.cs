@@ -84,8 +84,15 @@ namespace Chocs_Away_Order_System
                 // Increase index position in list
                 index++;
             }
+
+
+
             // Add item to basket
             basketItems.Add(new BasketItem(productNumber, productName, latestPrice, quantity, description));
+
+
+
+
             // Update totals of basket
             UpdateTotals();
         }

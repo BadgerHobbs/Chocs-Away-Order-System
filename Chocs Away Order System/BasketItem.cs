@@ -7,7 +7,7 @@ namespace Chocs_Away_Order_System
 {
     public class BasketItem
     {
-        // Initialise variables to store basket item data
+        // Initialise fileds to store basket item data
         private int productNumber;
         private string productName;
         private double latestPrice;
@@ -15,10 +15,10 @@ namespace Chocs_Away_Order_System
         private string description;
         private double totalValueOfBasketItem;
 
-        // Initialisation of basket item method
+        // Initialisation of basket item object
         public BasketItem(int productNumber, string productName, double latestPrice, int quantity, string description)
         {
-            // Set parameter values to item data variables
+            // Set parameter values to item data fields
             this.productNumber = productNumber;
             this.productName = productName;
             this.latestPrice = latestPrice;
