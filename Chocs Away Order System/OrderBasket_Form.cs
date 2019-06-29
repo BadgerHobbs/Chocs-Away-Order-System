@@ -228,29 +228,10 @@ namespace Chocs_Away_Order_System
             TotalCost_Label.Text = "£" + Math.Round(orderBasket.BasketTotal, 2).ToString("N2");
         }
 
-        private void TotalCost_Label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ProductsNumber_Label_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public OrderBasket OrderBasket
         {
             get;
             set;
-        }
-
-        private void Quantity_NumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void Price_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

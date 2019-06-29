@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.OrderSummary_Panel = new System.Windows.Forms.Panel();
             this.ProductsNumber_Label = new System.Windows.Forms.Label();
             this.Products_Label = new System.Windows.Forms.Label();
@@ -58,13 +58,13 @@
             this.Exit_Button = new System.Windows.Forms.Button();
             this.Basket_Panel = new System.Windows.Forms.Panel();
             this.Basket_DataGridView = new System.Windows.Forms.DataGridView();
-            this.Basket_Label = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Basket_Label = new System.Windows.Forms.Label();
             this.OrderSummary_Panel.SuspendLayout();
             this.Item_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity_NumericUpDown)).BeginInit();
@@ -100,7 +100,6 @@
             this.ProductsNumber_Label.TabIndex = 10;
             this.ProductsNumber_Label.Text = "0";
             this.ProductsNumber_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ProductsNumber_Label.Click += new System.EventHandler(this.ProductsNumber_Label_Click);
             // 
             // Products_Label
             // 
@@ -179,7 +178,6 @@
             this.TotalCost_Label.TabIndex = 3;
             this.TotalCost_Label.Text = "£0.00";
             this.TotalCost_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TotalCost_Label.Click += new System.EventHandler(this.TotalCost_Label_Click);
             // 
             // Total_Label
             // 
@@ -268,7 +266,6 @@
             0,
             0,
             0});
-            this.Quantity_NumericUpDown.ValueChanged += new System.EventHandler(this.Quantity_NumericUpDown_ValueChanged);
             // 
             // Add_Button
             // 
@@ -295,7 +292,6 @@
             this.Price_TextBox.TabIndex = 4;
             this.Price_TextBox.Text = "£0.00";
             this.Price_TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Price_TextBox.TextChanged += new System.EventHandler(this.Price_TextBox_TextChanged);
             // 
             // Description_Label
             // 
@@ -442,16 +438,6 @@
             this.Basket_DataGridView.Size = new System.Drawing.Size(702, 356);
             this.Basket_DataGridView.TabIndex = 22;
             // 
-            // Basket_Label
-            // 
-            this.Basket_Label.AutoSize = true;
-            this.Basket_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Basket_Label.Location = new System.Drawing.Point(11, 102);
-            this.Basket_Label.Name = "Basket_Label";
-            this.Basket_Label.Size = new System.Drawing.Size(57, 20);
-            this.Basket_Label.TabIndex = 22;
-            this.Basket_Label.Text = "Basket";
-            // 
             // id
             // 
             this.id.DataPropertyName = "id";
@@ -478,10 +464,10 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "price";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn4.FillWeight = 30F;
             this.dataGridViewTextBoxColumn4.HeaderText = "Price";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -490,10 +476,10 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "total";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn5.FillWeight = 30F;
             this.dataGridViewTextBoxColumn5.HeaderText = "Total";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -506,6 +492,16 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "Description";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // Basket_Label
+            // 
+            this.Basket_Label.AutoSize = true;
+            this.Basket_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Basket_Label.Location = new System.Drawing.Point(11, 102);
+            this.Basket_Label.Name = "Basket_Label";
+            this.Basket_Label.Size = new System.Drawing.Size(57, 20);
+            this.Basket_Label.TabIndex = 22;
+            this.Basket_Label.Text = "Basket";
             // 
             // OrderBasket_Form
             // 

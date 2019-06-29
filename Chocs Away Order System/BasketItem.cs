@@ -28,6 +28,7 @@ namespace Chocs_Away_Order_System
             this.totalValueOfBasketItem = latestPrice * quantity;
         }
 
+        // Get/Set Method to Return/Set description
         public string Description
         {
             get
@@ -40,6 +41,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Get/Set Method to Return/Set latest price
         public double LatestPrice
         {
             get
@@ -52,6 +54,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Get/Set Method to Return/Set product name
         public string ProductName
         {
             get
@@ -64,6 +67,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Get/Set Method to Return/Set product number
         public int ProductNumber
         {
             get
@@ -76,6 +80,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Get/Set Method to Return/Set quantity
         public int Quantity
         {
             get
@@ -88,6 +93,7 @@ namespace Chocs_Away_Order_System
             }
         }
 
+        // Get/Set Method to Return/Set value of item basket
         public double TotalValueOfBasketItem
         {
             get
